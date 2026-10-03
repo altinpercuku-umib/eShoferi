@@ -1,2 +1,25 @@
+# --- Environment variables (secrets) ---
 .env
 .env.*
+!.env.example
+
+# --- Python ---
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# --- Django ---
+db.sqlite3
+media/
+staticfiles/
+
+# --- Frontend (React / Node) ---
+node_modules/
+dist/
+
+# --- Editors & OS ---
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
