@@ -4,12 +4,9 @@ from .models import Category, Question, Answer
 # Register your models here.
 
 
-admin.site.register(Category)
-admin.site.register(Question)
-admin.site.register(Answer)
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name')
+    list_display = ('name',)
 
 class AnswerInline(admin.TabularInline):
     model = Answer
@@ -20,3 +17,7 @@ class QuestionAdmin(admin.ModelAdmin):
     list_display = ('category', 'question_text', 'created_at')
     list_filter = ('category', 'created_at')
     search_fields = ('question_text',)
+
+
+admin.site.register(Category, CategoryAdmin)
+admin.site.register(Question, QuestionAdmin)
