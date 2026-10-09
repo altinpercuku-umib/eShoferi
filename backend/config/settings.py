@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",
     'quiz',
+    'accounts',
 ]
+
+AUTH_USER_MODEL = 'accounts.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -132,3 +135,21 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+# Django REST Framework
+# Every endpoint requires login unless it explicitly says otherwise ("secure by default").
+# Session login is temporary - Sprint 2 replaces it with JWT.
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
+    "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.SessionAuthentication"],
+}
+
+
+# Exam rules
+# TODO: replace these defaults with the official Kosovo theory exam values.
+EXAM_QUESTION_COUNT = config("EXAM_QUESTION_COUNT", default=30, cast=int)
+EXAM_DURATION_MINUTES = config("EXAM_DURATION_MINUTES", default=45, cast=int)
+EXAM_PASS_PERCENT = config("EXAM_PASS_PERCENT", default=85, cast=int)
+# Extra seconds allowed after the timer ends, for slow networks.
+EXAM_SUBMIT_GRACE_SECONDS = config("EXAM_SUBMIT_GRACE_SECONDS", default=30, cast=int)
