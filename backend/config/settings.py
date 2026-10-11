@@ -10,11 +10,27 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.1/ref/settings/
 """
 
+import os
+from datetime import timedelta
 from pathlib import Path
-from decouple import config
+
+from decouple import Csv, config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+# Windows development fix: this PC's Application Control policy blocks the database
+# driver bundled with psycopg[binary]. psycopg then falls back to the libpq.dll that
+# ships with the official PostgreSQL installer, so we make sure it can find it.
+# Set PG_BIN_DIR in .env to override. Does nothing on Linux servers.
+if os.name == "nt":
+    _pg_bin_candidates = [Path(config("PG_BIN_DIR", default=""))] if config("PG_BIN_DIR", default="") else []
+    _pg_bin_candidates += sorted(Path("C:/Program Files/PostgreSQL").glob("*/bin"), reverse=True)
+    for _pg_bin in _pg_bin_candidates:
+        if (_pg_bin / "libpq.dll").exists():
+            os.environ["PATH"] = f"{_pg_bin}{os.pathsep}{os.environ.get('PATH', '')}"
+            break
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,7 +42,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="localhost,127.0.0.1", cast=Csv())
 
 
 # Application definition
@@ -39,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "rest_framework",
+    "rest_framework_simplejwt.token_blacklist",
+    "corsheaders",
     'quiz',
     'accounts',
 ]
@@ -48,6 +66,7 @@ AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # must come before CommonMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -92,6 +111,24 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/6.1/ref/settings/#auth-password-validators
+
+# Argon2 is the modern recommended password hashing algorithm. It's used whenever the
+# argon2 library can load (always on Linux servers; on this Windows PC the security policy
+# may block it, and Django's PBKDF2 hasher - also secure - is used instead).
+# The other hashers stay listed so older passwords still work (and get upgraded on next login).
+try:
+    import argon2  # noqa: F401
+
+    ARGON2_AVAILABLE = True
+except ImportError:
+    ARGON2_AVAILABLE = False
+
+PASSWORD_HASHERS = [
+    *(["django.contrib.auth.hashers.Argon2PasswordHasher"] if ARGON2_AVAILABLE else []),
+    "django.contrib.auth.hashers.PBKDF2PasswordHasher",
+    "django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher",
+    "django.contrib.auth.hashers.ScryptPasswordHasher",
+]
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -139,11 +176,59 @@ MAILERS = {
 
 # Django REST Framework
 # Every endpoint requires login unless it explicitly says otherwise ("secure by default").
-# Session login is temporary - Sprint 2 replaces it with JWT.
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.IsAuthenticated"],
-    "DEFAULT_AUTHENTICATION_CLASSES": ["rest_framework.authentication.SessionAuthentication"],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "accounts.authentication.CookieJWTAuthentication",  # the React app
+        "rest_framework.authentication.SessionAuthentication",  # admin + browsable API
+    ],
+    # Rate limiting: slows down password guessing and abuse.
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+        "rest_framework.throttling.ScopedRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "anon": "200/hour",
+        "user": "2000/hour",
+        "auth": "10/minute",  # login + register
+    },
 }
+
+
+# JWT authentication
+# Short-lived access token + long-lived refresh token, both in httpOnly cookies.
+# Every refresh issues a NEW refresh token and blacklists the old one (rotation),
+# so a stolen refresh token stops working as soon as the real user refreshes.
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "UPDATE_LAST_LOGIN": True,
+}
+
+AUTH_COOKIE_ACCESS = "access_token"
+AUTH_COOKIE_REFRESH = "refresh_token"
+AUTH_COOKIE_REFRESH_PATH = "/api/auth/"  # the refresh cookie is only ever sent to auth endpoints
+AUTH_COOKIE_SECURE = not DEBUG  # HTTPS-only cookies in production
+AUTH_COOKIE_SAMESITE = "Lax"
+
+
+# CORS / CSRF: which frontends may call this API with cookies
+CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default="http://localhost:5173", cast=Csv())
+CORS_ALLOW_CREDENTIALS = True
+CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS", default="http://localhost:5173", cast=Csv())
+
+
+# Production hardening (only when DEBUG is off)
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 60 * 60 * 24 * 30
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
 
 
 # Exam rules
