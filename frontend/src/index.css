@@ -1,73 +1,84 @@
-/* eShoferi design tokens
-   Colours come from road signs: mandatory-sign blue, priority yellow, warning red,
-   on a light road-grey ground (dark mode: asphalt). Type is Barlow, a family
-   modelled on road-sign and number-plate lettering. */
+/* eShoferi: neon road signs
+   Road-sign shapes drawn as neon tubes on a night-blue ground.
+   Yellow = main actions (priority sign), blue = selection (mandatory sign),
+   red = warnings and mistakes (warning sign), green = passed.
+   Glow is used only where something matters; everything else stays quiet. */
 
-:root {
-  --bg: #eef1f4;
-  --surface: #ffffff;
-  --ink: #1c2126;
-  --muted: #56616c;
-  --line: #d3d9df;
-  --blue: #1d4f9c;
-  --blue-ink: #ffffff;
-  --yellow: #f4c020;
-  --red: #c62828;
-  --green: #1f7a3f;
-  --sign-edge: #1c2126;
-  --asphalt: #2a2f35;
-  --lane: #f5f6f7;
-  --focus: #1d4f9c;
+:root,
+:root[data-theme='dark'] {
+  --bg: #070b14;
+  --surface: #0e1422;
+  --surface-2: #131b2c;
+  --ink: #e8eef7;
+  --muted: #8c98ab;
+  --line: #222c40;
+  --yellow: #ffd23f;
+  --on-yellow: #171204;
+  --red: #ff4458;
+  --blue: #38a3ff;
+  --green: #3cf0a0;
+  --focus: #38a3ff;
+  --glow: 1; /* 1 = neon on, 0 = off (daylight) */
 
   --font-body: 'Barlow', system-ui, sans-serif;
-  --font-display: 'Barlow Condensed', 'Barlow', system-ui, sans-serif;
+  --font-display: 'Chakra Petch', 'Barlow', system-ui, sans-serif;
 
   --step--1: 0.875rem;
   --step-0: 1.0625rem;
   --step-1: 1.3125rem;
   --step-2: 1.75rem;
   --step-3: 2.5rem;
-  --step-4: clamp(2.75rem, 7vw, 4.5rem);
+  --step-4: clamp(2.6rem, 6.5vw, 4.25rem);
 
-  --radius-sm: 6px;
-  --radius: 10px;
+  --radius-sm: 4px;
+  --radius: 8px;
   --measure: 66ch;
 
+  color-scheme: dark;
+}
+
+:root[data-theme='light'] {
+  --bg: #f3f5f9;
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --ink: #0e1422;
+  --muted: #556074;
+  --line: #d6dce6;
+  --yellow: #ffcc1a;
+  --on-yellow: #171204;
+  --red: #d7263d;
+  --blue: #1565d8;
+  --green: #0f8a52;
+  --focus: #1565d8;
+  --glow: 0;
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --bg: #1b1f23;
-    --surface: #24292f;
-    --ink: #eef1f4;
-    --muted: #a6b0ba;
-    --line: #39414a;
-    --blue: #6f9ee8;
-    --blue-ink: #10161d;
-    --red: #ef6b6b;
-    --green: #4cc27a;
-    --sign-edge: #0f1215;
-    --asphalt: #14171a;
-    --focus: #f4c020;
-    color-scheme: dark;
-  }
+/* Layout sizes (kept apart from the colour themes, so the phone layout can override them). */
+:root {
+  --gutter: 1rem;
+  --tabbar-h: 0px;
 }
 
-:root[data-theme='dark'] {
-  --bg: #1b1f23;
-  --surface: #24292f;
-  --ink: #eef1f4;
-  --muted: #a6b0ba;
-  --line: #39414a;
-  --blue: #6f9ee8;
-  --blue-ink: #10161d;
-  --red: #ef6b6b;
-  --green: #4cc27a;
-  --sign-edge: #0f1215;
-  --asphalt: #14171a;
-  --focus: #f4c020;
-  color-scheme: dark;
+/* ---------- neon helpers ---------- */
+
+.neon {
+  filter: drop-shadow(0 0 calc(2px * var(--glow)) currentColor) drop-shadow(0 0 calc(10px * var(--glow)) currentColor);
+}
+.neon-yellow {
+  color: var(--yellow);
+}
+.neon-blue {
+  color: var(--blue);
+}
+.neon-red {
+  color: var(--red);
+}
+.neon-green {
+  color: var(--green);
+}
+:root[data-theme='light'] .neon-yellow {
+  color: #d9a400;
 }
 
 /* ---------- base ---------- */
@@ -80,6 +91,7 @@
 
 body {
   margin: 0;
+  -webkit-tap-highlight-color: transparent;
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
@@ -93,10 +105,10 @@ h2,
 h3 {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.12;
   margin: 0 0 0.5em;
+  letter-spacing: -0.005em;
 }
-
 h1 {
   font-size: var(--step-3);
 }
@@ -118,8 +130,16 @@ a {
 }
 
 :focus-visible {
-  outline: 3px solid var(--focus);
-  outline-offset: 2px;
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* No double-tap zoom delay on anything people tap. */
+a,
+button,
+label,
+input {
+  touch-action: manipulation;
 }
 
 .visually-hidden {
@@ -136,6 +156,7 @@ a {
   left: 1rem;
   top: -3rem;
   background: var(--surface);
+  color: var(--ink);
   padding: 0.5rem 1rem;
   z-index: 10;
 }
@@ -147,17 +168,20 @@ a {
 
 .shell {
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
 }
 
+/* Side padding also keeps content clear of the notch on phones held sideways. */
 .site-header,
 .site-main,
 .site-footer {
   width: 100%;
-  max-width: 1040px;
+  max-width: 1080px;
   margin: 0 auto;
-  padding-inline: 1rem;
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
 }
 
 .site-header {
@@ -165,7 +189,8 @@ a {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding-block: 1rem;
+  padding-top: max(1.1rem, env(safe-area-inset-top));
+  padding-bottom: 1.1rem;
 }
 
 .site-main {
@@ -183,35 +208,38 @@ a {
   padding-top: 1.25rem;
 }
 
-/* Wordmark styled like a number plate: blue strip + white plate. */
 .wordmark {
   display: inline-flex;
-  align-items: stretch;
+  align-items: center;
+  gap: 0.55rem;
   text-decoration: none;
-  border: 2px solid var(--sign-edge);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
+  color: var(--ink);
+}
+.logo-mark {
+  width: 2.1rem;
+  height: 2.1rem;
+  flex: none;
+}
+.wordmark-text {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.5rem;
+  font-size: 1.45rem;
+  letter-spacing: 0.01em;
   line-height: 1;
 }
-.wordmark-strip {
-  background: #1d4f9c;
-  color: #fff;
-  padding: 0.3rem 0.45rem 0.25rem;
+.wordmark-e {
+  color: var(--yellow);
+  text-shadow: 0 0 calc(8px * var(--glow)) var(--yellow);
 }
-.wordmark-name {
-  background: #fff;
-  color: #1c2126;
-  padding: 0.3rem 0.55rem 0.25rem;
-  letter-spacing: 0.02em;
+:root[data-theme='light'] .wordmark-e {
+  color: #d9a400;
 }
 
-.site-nav {
+.site-nav,
+.nav-desktop {
   display: flex;
   align-items: center;
-  gap: 1.1rem;
+  gap: 1.25rem;
   font-weight: 500;
 }
 .site-nav a:not(.button) {
@@ -220,8 +248,12 @@ a {
   padding-block: 0.25rem;
   border-bottom: 2px solid transparent;
 }
+.site-nav a:not(.button):hover {
+  color: var(--yellow);
+}
 .site-nav a.active {
   border-bottom-color: var(--yellow);
+  box-shadow: 0 6px calc(10px * var(--glow)) -6px var(--yellow);
 }
 
 .theme-toggle {
@@ -229,10 +261,13 @@ a {
   height: 2.25rem;
   border-radius: 50%;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: transparent;
   color: var(--ink);
   cursor: pointer;
   font-size: 1rem;
+}
+.theme-toggle:hover {
+  border-color: var(--yellow);
 }
 
 /* ---------- buttons & forms ---------- */
@@ -242,30 +277,42 @@ a {
   align-items: center;
   justify-content: center;
   min-height: 2.9rem;
-  padding: 0.6rem 1.35rem;
-  border: 2px solid var(--blue);
+  padding: 0.6rem 1.4rem;
+  border: 1.5px solid var(--yellow);
   border-radius: var(--radius-sm);
-  background: var(--blue);
-  color: var(--blue-ink);
-  font: 600 var(--step-0) / 1 var(--font-body);
+  background: var(--yellow);
+  color: var(--on-yellow);
+  font: 600 var(--step-0) / 1 var(--font-display);
+  letter-spacing: 0.01em;
   text-decoration: none;
   cursor: pointer;
+  box-shadow: 0 0 calc(18px * var(--glow)) color-mix(in srgb, var(--yellow) 45%, transparent);
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
 }
 .button:hover {
-  filter: brightness(1.08);
+  box-shadow: 0 0 calc(28px * var(--glow)) color-mix(in srgb, var(--yellow) 65%, transparent);
+}
+.button:active {
+  transform: translateY(1px);
 }
 .button:disabled {
-  opacity: 0.55;
+  opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }
 .button-quiet {
   background: transparent;
   color: var(--ink);
   border-color: var(--line);
+  box-shadow: none;
+}
+.button-quiet:hover {
+  border-color: var(--blue);
+  box-shadow: 0 0 calc(14px * var(--glow)) color-mix(in srgb, var(--blue) 40%, transparent);
 }
 .button-small {
   min-height: 2.25rem;
-  padding: 0.35rem 0.9rem;
+  padding: 0.35rem 0.95rem;
   font-size: var(--step--1);
 }
 .button-block {
@@ -285,6 +332,9 @@ a {
 .site-nav .link-button {
   color: var(--ink);
   text-decoration: none;
+}
+.site-nav .link-button:hover {
+  color: var(--yellow);
 }
 
 .actions {
@@ -308,12 +358,14 @@ a {
   padding: 0.55rem 0.8rem;
   border: 1.5px solid var(--line);
   border-radius: var(--radius-sm);
-  background: var(--surface);
+  background: var(--surface-2);
   color: var(--ink);
   font: inherit;
 }
 .field input:focus-visible {
-  border-color: var(--focus);
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px var(--blue), 0 0 calc(14px * var(--glow)) color-mix(in srgb, var(--blue) 45%, transparent);
 }
 .field input[aria-invalid='true'] {
   border-color: var(--red);
@@ -338,22 +390,23 @@ a {
 .page-loader {
   color: var(--muted);
   padding-block: 3rem;
+  font-family: var(--font-display);
 }
 
 /* ---------- home ---------- */
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
   align-items: center;
   gap: 2rem;
-  padding-block: 2rem 3rem;
+  padding-block: 1.5rem 3.5rem;
 }
 .hero h1 {
   font-size: var(--step-4);
   font-weight: 700;
-  letter-spacing: -0.01em;
-  max-width: 14ch;
+  line-height: 1.04;
+  max-width: 13ch;
 }
 .lead {
   font-size: var(--step-1);
@@ -361,15 +414,54 @@ a {
   max-width: 36ch;
 }
 .hero-sign {
-  width: clamp(9rem, 24vw, 15rem);
+  width: 100%;
+  max-width: 26rem;
+  justify-self: end;
 }
 .hero-last {
   color: var(--muted);
 }
 
-.sign {
+.sign,
+.neon-signs {
   display: block;
   height: auto;
+  overflow: visible;
+}
+
+/* The one big moment: the signs flicker on like neon tubes. */
+.tube {
+  animation: power-on 1.3s ease-out both;
+}
+.tube-1 {
+  animation-delay: 0.15s;
+}
+.tube-2 {
+  animation-delay: 0.55s;
+}
+.tube-3 {
+  animation-delay: 0.95s;
+}
+@keyframes power-on {
+  0% {
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.85;
+  }
+  11% {
+    opacity: 0.1;
+  }
+  16% {
+    opacity: 0.95;
+  }
+  19% {
+    opacity: 0.3;
+  }
+  28%,
+  100% {
+    opacity: 1;
+  }
 }
 
 .topics {
@@ -384,24 +476,29 @@ a {
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: 1.75rem 2.5rem;
 }
-.topic-list h3 {
-  margin-bottom: 0.25rem;
+.topic {
+  display: block;
+  color: var(--ink);
+  text-decoration: none;
 }
-.topic-list p {
+.topic h3 {
+  margin-bottom: 0.3rem;
+  text-decoration: underline;
+  text-decoration-color: var(--line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+.topic:hover h3 {
+  color: var(--yellow);
+  text-decoration-color: var(--yellow);
+}
+.topic p {
   color: var(--muted);
   margin: 0;
 }
-
-.topic-list h3 a {
-  color: var(--ink);
-  text-decoration-color: var(--line);
-  text-decoration-thickness: 2px;
-}
-.topic-list h3 a:hover {
-  text-decoration-color: var(--yellow);
-}
-.topic-list .topic-count {
+.topic .topic-count {
   margin-top: 0.35rem;
+  font-family: var(--font-display);
   font-size: var(--step--1);
 }
 
@@ -418,12 +515,15 @@ a {
 /* ---------- exam ---------- */
 
 .exam-intro {
-  max-width: 40rem;
+  max-width: 42rem;
 }
 .rules {
   padding-left: 1.2rem;
   margin: 0 0 1.5rem;
   color: var(--muted);
+}
+.rules li {
+  margin-bottom: 0.6rem;
 }
 
 .mode-picker {
@@ -438,9 +538,9 @@ a {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 0.25rem 0.85rem;
-  padding: 0.8rem 1rem;
+  padding: 0.85rem 1rem;
   background: var(--surface);
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   cursor: pointer;
 }
@@ -449,7 +549,7 @@ a {
 }
 .mode.is-selected {
   border-color: var(--blue);
-  box-shadow: inset 0 0 0 1px var(--blue);
+  box-shadow: 0 0 0 1px var(--blue), 0 0 calc(18px * var(--glow)) color-mix(in srgb, var(--blue) 35%, transparent);
 }
 .mode input {
   accent-color: var(--blue);
@@ -472,17 +572,39 @@ a {
   font-weight: 600;
 }
 
+.exam {
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+}
+.exam-early {
+  order: 1; /* after the Back / Next buttons on big screens */
+}
+
+/* Count, timer and road stay pinned to the top while scrolling a long question. */
+.exam-top {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--bg);
+  padding-top: 0.75rem;
+  margin-top: -0.75rem;
+  padding-bottom: 0.25rem;
+}
+.exam-top::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1rem;
+  height: 1rem;
+  background: linear-gradient(var(--bg), transparent);
+  pointer-events: none;
+}
 .exam-category {
   margin: 0 0 0.25rem;
   color: var(--muted);
   font-weight: 500;
-}
-.rules li {
-  margin-bottom: 0.6rem;
-}
-
-.exam {
-  max-width: 46rem;
 }
 
 .exam-bar {
@@ -500,16 +622,24 @@ a {
 }
 .exam-count strong {
   font-weight: 700;
+  color: var(--yellow);
+}
+:root[data-theme='light'] .exam-count strong {
+  color: var(--ink);
 }
 
-/* The road: one lane segment per question. Answered = painted white,
-   current = yellow, unanswered = faint dashed marking. */
+/* The road: one lane segment per question.
+   Unanswered = dim dashed marking, answered = lit blue, current = lit yellow. */
 .road {
-  background: var(--asphalt);
-  border-radius: var(--radius-sm);
-  padding: 0.6rem 0.5rem;
-  margin-bottom: 2rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.5rem 0.4rem;
   overflow-x: auto;
+  scrollbar-width: none;
+}
+.road::-webkit-scrollbar {
+  display: none;
 }
 .road ol {
   list-style: none;
@@ -525,13 +655,13 @@ a {
 .road-stop {
   position: relative;
   width: 100%;
-  height: 2.1rem;
+  height: 2.15rem;
   border: 0;
   background: transparent;
-  color: #9aa4ad;
-  font: 600 0.75rem / 1 var(--font-body);
+  color: var(--muted);
+  font: 600 0.75rem / 1 var(--font-display);
   cursor: pointer;
-  padding: 0 0 0.55rem;
+  padding: 0 0 0.6rem;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -541,29 +671,58 @@ a {
   position: absolute;
   left: 0.15rem;
   right: 0.15rem;
-  bottom: 0.2rem;
-  height: 0.3rem;
+  bottom: 0.25rem;
+  height: 0.25rem;
   border-radius: 2px;
-  background: repeating-linear-gradient(90deg, #5d666f 0 6px, transparent 6px 10px);
+  background: repeating-linear-gradient(90deg, var(--line) 0 6px, transparent 6px 10px);
 }
 .road-stop.is-answered {
-  color: var(--lane);
+  color: var(--ink);
 }
 .road-stop.is-answered::after {
-  background: var(--lane);
+  background: var(--blue);
+  box-shadow: 0 0 calc(8px * var(--glow)) var(--blue);
 }
 .road-stop[aria-current='step'] {
   color: var(--yellow);
 }
+:root[data-theme='light'] .road-stop[aria-current='step'] {
+  color: var(--ink);
+}
 .road-stop[aria-current='step']::after {
   background: var(--yellow);
-  height: 0.4rem;
+  height: 0.35rem;
+  box-shadow: 0 0 calc(10px * var(--glow)) var(--yellow);
+}
+
+.question {
+  margin-top: 1.75rem;
+  animation: question-in 0.18s ease-out;
+}
+.slide-next {
+  --from: 14px;
+}
+.slide-prev {
+  --from: -14px;
+}
+@keyframes question-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--from));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .question h1 {
+  scroll-margin-top: 10rem; /* keep the question visible below the pinned bar */
+  font-family: var(--font-body);
   font-size: var(--step-2);
   font-weight: 600;
-  max-width: 30ch;
+  line-height: 1.25;
+  max-width: 32ch;
 }
 .question h1:focus {
   outline: none;
@@ -586,16 +745,20 @@ a {
   align-items: center;
   gap: 0.9rem;
   text-align: left;
-  padding: 0.85rem 1rem;
+  padding: 0.9rem 1rem;
   background: var(--surface);
   color: var(--ink);
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius);
   font: inherit;
   cursor: pointer;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
 }
 .option:hover {
   border-color: var(--muted);
+}
+.option:active {
+  transform: scale(0.99);
 }
 .option-key {
   flex: none;
@@ -603,22 +766,22 @@ a {
   height: 2rem;
   display: grid;
   place-items: center;
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   font-family: var(--font-display);
   font-weight: 700;
 }
 .option.is-selected {
   border-color: var(--blue);
-  box-shadow: inset 0 0 0 1px var(--blue);
+  box-shadow: 0 0 0 1px var(--blue), 0 0 calc(20px * var(--glow)) color-mix(in srgb, var(--blue) 35%, transparent);
 }
 .option.is-selected .option-key {
   background: var(--blue);
   border-color: var(--blue);
-  color: var(--blue-ink);
+  color: #04101f;
 }
 
-.exam-nav {
+.exam-dock {
   display: flex;
   justify-content: space-between;
   gap: 0.75rem;
@@ -630,57 +793,65 @@ a {
 }
 
 .confirm {
+  display: block;
   margin-top: 2rem;
   padding: 1.25rem;
-  border-left: 4px solid var(--yellow);
   background: var(--surface);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  border: 1px solid var(--yellow);
+  border-radius: var(--radius);
+  box-shadow: 0 0 calc(18px * var(--glow)) color-mix(in srgb, var(--yellow) 25%, transparent);
 }
 .confirm .actions {
   margin-bottom: 0;
 }
 
-/* Timer as a small traffic light */
+/* Timer: digital readout with a three-lamp traffic light. */
 .timer {
+  --state: var(--green);
   display: inline-flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.35rem 0.75rem 0.35rem 0.45rem;
-  background: var(--asphalt);
-  color: #fff;
-  border-radius: 999px;
+  gap: 0.65rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.6rem;
+  border: 1.5px solid var(--state);
+  border-radius: var(--radius-sm);
+  color: var(--state);
   font-family: var(--font-display);
   font-size: var(--step-1);
-  font-weight: 600;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
+  text-shadow: 0 0 calc(8px * var(--glow)) var(--state);
+  box-shadow: 0 0 calc(14px * var(--glow)) color-mix(in srgb, var(--state) 35%, transparent);
+}
+.timer-yellow {
+  --state: var(--yellow);
+}
+.timer-red {
+  --state: var(--red);
+}
+:root[data-theme='light'] .timer-yellow {
+  --state: #b98900;
 }
 .timer-lights {
   display: inline-flex;
-  gap: 0.2rem;
+  gap: 0.22rem;
 }
 .timer-lamp {
-  width: 0.6rem;
-  height: 0.6rem;
+  width: 0.55rem;
+  height: 0.55rem;
   border-radius: 50%;
-  background: #4a525a;
+  background: var(--line);
 }
-.timer-green .lamp-green {
-  background: #3fcf74;
-}
-.timer-yellow .lamp-yellow {
-  background: var(--yellow);
-}
+.timer-green .lamp-green,
+.timer-yellow .lamp-yellow,
 .timer-red .lamp-red {
-  background: #ff4d4d;
-}
-.timer-red .timer-text {
-  color: #ff8a8a;
+  background: var(--state);
+  box-shadow: 0 0 calc(8px * var(--glow)) var(--state);
 }
 
 /* ---------- result ---------- */
 
 .result {
-  max-width: 46rem;
+  max-width: 48rem;
 }
 .result-head {
   display: flex;
@@ -701,12 +872,22 @@ a {
 }
 .result-score strong {
   font-family: var(--font-display);
-  font-size: var(--step-2);
+  font-size: var(--step-3);
+  font-weight: 700;
+  margin-right: 0.15em;
+}
+.is-pass .result-score strong {
+  color: var(--green);
+  text-shadow: 0 0 calc(12px * var(--glow)) var(--green);
+}
+.is-fail .result-score strong {
+  color: var(--red);
+  text-shadow: 0 0 calc(12px * var(--glow)) var(--red);
 }
 .result-date {
   color: var(--muted);
   font-size: var(--step--1);
-  margin: 0.25rem 0 0;
+  margin: 0.35rem 0 0;
 }
 
 .review-head {
@@ -725,7 +906,7 @@ a {
 
 .segmented {
   display: inline-flex;
-  border: 1.5px solid var(--line);
+  border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   overflow: hidden;
 }
@@ -733,8 +914,8 @@ a {
   border: 0;
   background: transparent;
   color: var(--ink);
-  font: 500 var(--step--1) / 1 var(--font-body);
-  padding: 0.6rem 0.9rem;
+  font: 500 var(--step--1) / 1 var(--font-display);
+  padding: 0.65rem 0.95rem;
   cursor: pointer;
 }
 .segmented button[aria-pressed='true'] {
@@ -748,8 +929,11 @@ a {
   margin: 1.5rem 0 0;
 }
 .review-item {
-  padding: 1.25rem 0 1.25rem 1rem;
-  border-left: 4px solid var(--line);
+  padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--line);
+  border-radius: var(--radius);
   margin-bottom: 1rem;
 }
 .review-item.is-wrong {
@@ -759,9 +943,12 @@ a {
   border-left-color: var(--green);
 }
 .review-item h3 {
+  font-family: var(--font-body);
   font-size: var(--step-1);
+  line-height: 1.3;
 }
 .review-number {
+  font-family: var(--font-display);
   color: var(--muted);
 }
 .review-answers {
@@ -770,11 +957,14 @@ a {
   margin: 0 0 0.75rem;
 }
 .review-answers li {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  column-gap: 0.5rem;
   align-items: baseline;
-  gap: 0.25rem 0.6rem;
   padding: 0.3rem 0;
+}
+.review-note {
+  grid-column: 2;
 }
 .review-mark {
   width: 1.1rem;
@@ -789,23 +979,27 @@ a {
 .review-answers .is-correct {
   font-weight: 600;
 }
-.review-note {
+.review-answers .review-note {
   font-size: var(--step--1);
   color: var(--muted);
   font-weight: 400;
 }
 .explanation {
-  background: var(--surface);
+  background: var(--surface-2);
   border-radius: var(--radius-sm);
   padding: 0.75rem 1rem;
   margin: 0;
   font-size: var(--step--1);
+  color: var(--muted);
+}
+:root[data-theme='light'] .explanation {
+  background: var(--bg);
 }
 
 /* ---------- history & messages ---------- */
 
 .history {
-  max-width: 40rem;
+  max-width: 44rem;
 }
 .history-list {
   list-style: none;
@@ -818,7 +1012,7 @@ a {
   grid-template-columns: 1fr auto 8.5rem;
   align-items: center;
   gap: 1rem;
-  padding: 0.9rem 0.25rem;
+  padding: 0.95rem 0.5rem;
   border-bottom: 1px solid var(--line);
   color: var(--ink);
   text-decoration: none;
@@ -839,22 +1033,23 @@ a {
 .history-score {
   font-family: var(--font-display);
   font-size: var(--step-1);
-  font-weight: 600;
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
 }
 .badge {
   justify-self: end;
-  font-size: var(--step--1);
-  font-weight: 600;
-  padding: 0.15rem 0.6rem;
-  border-radius: 999px;
-  border: 1.5px solid currentColor;
+  font: 600 var(--step--1) / 1.2 var(--font-display);
+  padding: 0.2rem 0.65rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid currentColor;
 }
 .badge-pass {
   color: var(--green);
+  box-shadow: 0 0 calc(10px * var(--glow)) color-mix(in srgb, var(--green) 30%, transparent);
 }
 .badge-fail {
   color: var(--red);
+  box-shadow: 0 0 calc(10px * var(--glow)) color-mix(in srgb, var(--red) 30%, transparent);
 }
 .badge-open {
   color: var(--muted);
@@ -870,25 +1065,269 @@ a {
   padding-block: 2rem;
 }
 
+/* ---------- bottom tab bar (phones only) ---------- */
+
+.tabbar {
+  display: none;
+}
+
+/* Keyboard tips only make sense with a keyboard, swipe tips only with a touch screen. */
+.hint-touch {
+  display: none;
+}
+@media (hover: none) and (pointer: coarse) {
+  .hint-touch {
+    display: list-item;
+  }
+  .hint-keyboard {
+    display: none;
+  }
+}
+
+/* During an exam: no accidental pull-to-refresh, no footer. */
+:root[data-mode='exam'] {
+  overscroll-behavior-y: contain;
+}
+:root[data-mode='exam'] .site-footer {
+  display: none;
+}
+
 /* ---------- small screens ---------- */
 
-@media (max-width: 640px) {
+@media (max-width: 720px) {
+  :root {
+    --tabbar-h: 4.1rem;
+  }
+
+  .nav-desktop {
+    display: none;
+  }
+
+  .has-tabbar {
+    padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+  }
+
+  .tabbar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    height: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+    padding: 0 max(0.5rem, env(safe-area-inset-right)) env(safe-area-inset-bottom) max(0.5rem, env(safe-area-inset-left));
+    background: color-mix(in srgb, var(--bg) 95%, transparent);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line);
+  }
+  .tab {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    color: var(--muted);
+    text-decoration: none;
+    font: 600 0.75rem / 1 var(--font-display);
+  }
+  .tab-icon {
+    width: 1.55rem;
+    height: 1.55rem;
+  }
+  .tab.active {
+    color: var(--yellow);
+  }
+  .tab.active .tab-icon {
+    filter: drop-shadow(0 0 calc(6px * var(--glow)) var(--yellow));
+  }
+  .tab.active::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 32%;
+    right: 32%;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--yellow);
+    box-shadow: 0 0 calc(8px * var(--glow)) var(--yellow);
+  }
+  :root[data-theme='light'] .tab.active {
+    color: var(--ink);
+  }
+
+  /* Exam mode on phones: full focus, nothing to tap by accident. */
+  :root[data-mode='exam'] .tabbar,
+  :root[data-mode='exam'] .site-header {
+    display: none;
+  }
+  :root[data-mode='exam'] .has-tabbar {
+    padding-bottom: 0;
+  }
+  :root[data-mode='exam'] .site-main {
+    padding-top: max(0.75rem, env(safe-area-inset-top));
+  }
+
+  .site-main {
+    padding-block: 1rem 2.5rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+
+  /* The exam fills the screen, so Back / Next always sit at the bottom, in thumb reach. */
+  :root[data-mode='exam'] .site-main {
+    padding-bottom: 0;
+  }
+  .exam {
+    min-height: calc(100dvh - max(0.75rem, env(safe-area-inset-top)));
+  }
+  .exam-early {
+    order: 0; /* above the buttons on phones */
+    margin-top: 1.5rem;
+  }
+  .exam-dock {
+    order: 1;
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    z-index: 5;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+  .exam-dock > .button:last-child {
+    flex: 1;
+  }
+  .confirm.exam-dock {
+    border: 0;
+    border-top: 1px solid var(--yellow);
+    border-radius: 0;
+    box-shadow: 0 -10px calc(24px * var(--glow)) color-mix(in srgb, var(--yellow) 16%, transparent);
+  }
+  .confirm .actions .button {
+    flex: 1 1 100%;
+  }
+
+  /* Start button pinned above the tab bar, so it's reachable without scrolling the whole list. */
+  .intro-dock {
+    position: sticky;
+    bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
+    z-index: 5;
+    margin-inline: calc(var(--gutter) * -1);
+    padding: 0.75rem var(--gutter);
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--line);
+  }
+  .intro-dock .button {
+    width: 100%;
+  }
+
+  .exam-bar {
+    margin-bottom: 0.6rem;
+  }
+  .exam-count {
+    font-size: 1.1rem;
+  }
+  .timer {
+    font-size: 1.1rem;
+  }
+  .road li {
+    flex-basis: 2.1rem;
+  }
+  .road-stop {
+    height: 2.6rem;
+  }
+  .question {
+    margin-top: 1.25rem;
+  }
+  .question h1 {
+    font-size: 1.35rem;
+  }
+  .option {
+    min-height: 3.6rem;
+    padding: 0.9rem;
+  }
+
+  .actions .button {
+    flex: 1 1 auto;
+  }
+
+  .topic-list {
+    grid-template-columns: 1fr;
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .topic {
+    position: relative;
+    padding: 0.95rem 2rem 0.95rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .topic::after {
+    content: '›';
+    position: absolute;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 1.6rem;
+    line-height: 1;
+  }
+  .topic h3 {
+    font-size: 1.15rem;
+    margin-bottom: 0.15rem;
+    text-decoration: none;
+  }
+  .topic .topic-desc {
+    display: none;
+  }
+  .topic .topic-count {
+    margin-top: 0;
+  }
+  .topics h2 {
+    font-size: 1.5rem;
+  }
+
+  .segmented {
+    width: 100%;
+  }
+  .segmented button {
+    flex: 1;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 0.5rem;
+  }
+  .hero-sign {
+    order: -1;
+    max-width: 15rem;
+    justify-self: start;
+  }
+  .site-nav {
+    gap: 0.8rem;
+    font-size: var(--step--1);
+  }
+  .wordmark-text {
+    font-size: 1.2rem;
+  }
+  .logo-mark {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
   .mode {
     grid-template-columns: auto 1fr;
   }
   .mode-meta {
     grid-column: 2;
     text-align: left;
-  }
-  .hero {
-    grid-template-columns: 1fr;
-  }
-  .hero-sign {
-    display: none;
-  }
-  .site-nav {
-    gap: 0.75rem;
-    font-size: var(--step--1);
   }
   .history-row {
     grid-template-columns: 1fr auto;
@@ -898,16 +1337,30 @@ a {
     justify-self: start;
   }
   .result-head {
+    flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
   }
   .result-sign {
-    width: 4rem;
+    width: 3.5rem;
+  }
+  .result-head h1 {
+    font-size: 2rem;
+  }
+  .review-item {
+    padding: 1rem;
+  }
+  .review-item h3 {
+    font-size: 1.1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .tube,
+  .question {
+    animation: none;
+  }
   * {
-    scroll-behavior: auto !important;
     transition: none !important;
   }
 }

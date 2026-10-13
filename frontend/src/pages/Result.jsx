@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router'
 import { api } from '../api.js'
 import PageLoader from '../components/PageLoader.jsx'
 import { FailSign, PassSign } from '../components/Signs.jsx'
+import { clearProgress } from '../examProgress.js'
 import useTitle from '../useTitle.js'
 
 function ReviewItem({ item, number }) {
@@ -47,7 +48,13 @@ export default function Result() {
   useTitle('Rezultati')
 
   useEffect(() => {
-    api.exam(id).then(setExam).catch((err) => setError(err.message))
+    api
+      .exam(id)
+      .then((data) => {
+        if (data.submitted_at) clearProgress(data.id) // no need to keep saved answers anymore
+        setExam(data)
+      })
+      .catch((err) => setError(err.message))
   }, [id])
 
   if (error) {

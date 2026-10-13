@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import { api } from '../api.js'
 import { useAuth } from '../auth.jsx'
-import { PrioritySign } from '../components/Signs.jsx'
+import { NeonSigns } from '../components/Signs.jsx'
 import useTitle from '../useTitle.js'
 
 function LastResult() {
@@ -68,7 +68,7 @@ export default function Home() {
             </>
           )}
         </div>
-        <PrioritySign className="hero-sign" />
+        <NeonSigns className="hero-sign" />
       </section>
 
       {categories.length > 0 && (
@@ -77,11 +77,11 @@ export default function Home() {
           <ul className="topic-list">
             {categories.map((category) => (
               <li key={category.id}>
-                <h3>
-                  <Link to={`/exam?category=${category.id}`}>{category.name}</Link>
-                </h3>
-                {category.description && <p>{category.description}</p>}
-                <p className="topic-count">{category.question_count} pyetje</p>
+                <Link to={`/exam?category=${category.id}`} className="topic">
+                  <h3>{category.name}</h3>
+                  {category.description && <p className="topic-desc">{category.description}</p>}
+                  <p className="topic-count">{category.question_count} pyetje</p>
+                </Link>
               </li>
             ))}
           </ul>
