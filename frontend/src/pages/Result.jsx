@@ -97,14 +97,15 @@ export default function Result() {
             <strong>{exam.score}</strong> nga {exam.total} pyetje të sakta
           </p>
           <p className="result-date">
+            {exam.category ? `${exam.category.name}, ` : 'Provim i plotë, '}
             {new Date(exam.submitted_at).toLocaleString('sq-AL', { dateStyle: 'long', timeStyle: 'short' })}
           </p>
         </div>
       </header>
 
       <div className="actions">
-        <Link to="/exam" className="button">
-          Bëj një provim tjetër
+        <Link to={exam.category ? `/exam?category=${exam.category.id}` : '/exam'} className="button">
+          {exam.category ? 'Ushtro përsëri këtë kategori' : 'Bëj një provim tjetër'}
         </Link>
         <Link to="/exams" className="button button-quiet">
           Historiku

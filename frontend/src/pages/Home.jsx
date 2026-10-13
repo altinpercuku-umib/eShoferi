@@ -73,12 +73,15 @@ export default function Home() {
 
       {categories.length > 0 && (
         <section className="topics" aria-labelledby="topics-title">
-          <h2 id="topics-title">Çfarë përfshin provimi</h2>
+          <h2 id="topics-title">Ushtro sipas kategorisë</h2>
           <ul className="topic-list">
             {categories.map((category) => (
               <li key={category.id}>
-                <h3>{category.name}</h3>
+                <h3>
+                  <Link to={`/exam?category=${category.id}`}>{category.name}</Link>
+                </h3>
                 {category.description && <p>{category.description}</p>}
+                <p className="topic-count">{category.question_count} pyetje</p>
               </li>
             ))}
           </ul>

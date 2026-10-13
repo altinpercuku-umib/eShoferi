@@ -1,8 +1,10 @@
+import math
 import random
 from datetime import timedelta
 
 from django.conf import settings
 from django.db import transaction
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from rest_framework import mixins, permissions, status, viewsets
@@ -16,12 +18,13 @@ from .serializers import (
     ExamHistorySerializer,
     ExamResultSerializer,
     ExamStartedSerializer,
+    StartExamSerializer,
     SubmitSerializer,
 )
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Category.objects.order_by("name")
+    queryset = Category.objects.annotate(question_count=Count("questions")).order_by("name")
     serializer_class = CategorySerializer
     permission_classes = [permissions.AllowAny]  # anyone can browse categories
 
@@ -34,6 +37,7 @@ class ExamViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.Gen
         # Anyone else's attempt id simply returns 404.
         return (
             ExamAttempt.objects.filter(user=self.request.user)
+            .select_related("category")
             .prefetch_related("items__question__answers", "items__selected_answers")
             .order_by("-started_at")
         )
@@ -44,18 +48,44 @@ class ExamViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.Gen
         serializer_class = ExamResultSerializer if attempt.submitted_at else ExamStartedSerializer
         return Response(serializer_class(attempt).data)
 
+    @action(detail=False, methods=["get"])
+    def rules(self, request):
+        """The exam settings, so the frontend can show them before a user starts."""
+        return Response(
+            {
+                "question_count": settings.EXAM_QUESTION_COUNT,
+                "duration_minutes": settings.EXAM_DURATION_MINUTES,
+                "pass_percent": settings.EXAM_PASS_PERCENT,
+                "practice_question_count": settings.PRACTICE_QUESTION_COUNT,
+            }
+        )
+
     def create(self, request):
-        count = settings.EXAM_QUESTION_COUNT
-        question_ids = list(Question.objects.values_list("id", flat=True))
-        if len(question_ids) < count:
-            raise ValidationError(f"Duhen të paktën {count} pyetje për një provim.")
+        input_serializer = StartExamSerializer(data=request.data)
+        input_serializer.is_valid(raise_exception=True)
+        category = input_serializer.validated_data.get("category")
+
+        if category:
+            # Practice round: fewer questions from one category, with time in proportion.
+            question_ids = list(category.questions.values_list("id", flat=True))
+            if not question_ids:
+                raise ValidationError("Kjo kategori nuk ka ende pyetje.")
+            count = min(settings.PRACTICE_QUESTION_COUNT, len(question_ids))
+            minutes = math.ceil(settings.EXAM_DURATION_MINUTES * count / settings.EXAM_QUESTION_COUNT)
+        else:
+            # Full exam: questions from every category, like the real test.
+            question_ids = list(Question.objects.values_list("id", flat=True))
+            count = settings.EXAM_QUESTION_COUNT
+            minutes = settings.EXAM_DURATION_MINUTES
+            if len(question_ids) < count:
+                raise ValidationError(f"Duhen të paktën {count} pyetje për një provim.")
 
         chosen_ids = random.sample(question_ids, count)
-        expires_at = timezone.now() + timedelta(minutes=settings.EXAM_DURATION_MINUTES)
+        expires_at = timezone.now() + timedelta(minutes=minutes)
 
         # Either the attempt AND all its questions are saved, or nothing is.
         with transaction.atomic():
-            attempt = ExamAttempt.objects.create(user=request.user, expires_at=expires_at)
+            attempt = ExamAttempt.objects.create(user=request.user, category=category, expires_at=expires_at)
             AttemptQuestion.objects.bulk_create(
                 AttemptQuestion(attempt=attempt, question_id=qid, position=i)
                 for i, qid in enumerate(chosen_ids)

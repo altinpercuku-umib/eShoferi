@@ -42,8 +42,9 @@ export default function History() {
             return (
               <li key={exam.id}>
                 <Link to={`/exams/${exam.id}`} className="history-row">
-                  <span className="history-date">
-                    {new Date(exam.started_at).toLocaleString('sq-AL', dateFormat)}
+                  <span className="history-what">
+                    <span className="history-kind">{exam.category ? exam.category.name : 'Provim i plotë'}</span>
+                    <span className="history-date">{new Date(exam.started_at).toLocaleString('sq-AL', dateFormat)}</span>
                   </span>
                   <span className="history-score">{done ? `${exam.score} / ${exam.total}` : '–'}</span>
                   <span className={`badge ${!done ? 'badge-open' : exam.passed ? 'badge-pass' : 'badge-fail'}`}>

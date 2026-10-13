@@ -17,6 +17,7 @@ User = get_user_model()
     EXAM_DURATION_MINUTES=30,
     EXAM_PASS_PERCENT=80,
     EXAM_SUBMIT_GRACE_SECONDS=0,
+    PRACTICE_QUESTION_COUNT=4,
 )
 class ExamAPITests(APITestCase):
     @classmethod
@@ -28,6 +29,10 @@ class ExamAPITests(APITestCase):
             q = Question.objects.create(category=cls.category, question_text=f"Pyetja {i}")
             Answer.objects.create(question=q, answer_text="E saktë", is_correct=True)
             Answer.objects.create(question=q, answer_text="E gabuar", is_correct=False)
+        cls.small_category = Category.objects.create(name="E vogël")
+        for i in range(6):
+            q = Question.objects.create(category=cls.small_category, question_text=f"Pyetje e vogël {i}")
+            Answer.objects.create(question=q, answer_text="E saktë", is_correct=True)
 
     # ---------- helpers ----------
 
@@ -132,7 +137,7 @@ class ExamAPITests(APITestCase):
         first = Answer.objects.create(question=q, answer_text="A", is_correct=True)
         Answer.objects.create(question=q, answer_text="B", is_correct=True)
 
-        with self.settings(EXAM_QUESTION_COUNT=21):  # all questions, so q is surely included
+        with self.settings(EXAM_QUESTION_COUNT=27):  # all questions, so q is surely included
             exam = self.start_exam()
         answers = self.correct_answers_for(exam)
         for entry in answers:
@@ -140,4 +145,25 @@ class ExamAPITests(APITestCase):
                 entry["selected"] = [first.id]
 
         response = self.submit(exam["id"], answers)
-        self.assertEqual(response.data["score"], 20)
+        self.assertEqual(response.data["score"], 26)
+
+    # ---------- practice by category ----------
+
+    def test_category_practice_uses_only_that_category(self):
+        self.client.force_authenticate(self.user)
+        response = self.client.post(reverse("exam-list"), {"category": self.small_category.id}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(len(response.data["questions"]), 4)
+        self.assertEqual(response.data["category"]["id"], self.small_category.id)
+        allowed = set(self.small_category.questions.values_list("id", flat=True))
+        self.assertTrue({q["id"] for q in response.data["questions"]} <= allowed)
+
+    def test_unknown_category_is_rejected(self):
+        self.client.force_authenticate(self.user)
+        response = self.client.post(reverse("exam-list"), {"category": 999999}, format="json")
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_categories_include_question_count(self):
+        response = self.client.get(reverse("category-list"))
+        counts = {c["name"]: c["question_count"] for c in response.data}
+        self.assertEqual(counts["E vogël"], 6)

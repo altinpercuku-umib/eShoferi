@@ -87,7 +87,9 @@ export const api = {
   logout: () => send('/auth/logout/', { method: 'POST' }),
 
   categories: () => request('/categories/'),
-  startExam: () => request('/exams/', { method: 'POST' }),
+  examRules: () => request('/exams/rules/'),
+  startExam: (categoryId) =>
+    request('/exams/', { method: 'POST', body: categoryId ? { category: categoryId } : {} }),
   exams: () => request('/exams/'),
   exam: (id) => request(`/exams/${id}/`),
   submitExam: (id, answers) => request(`/exams/${id}/submit/`, { method: 'POST', body: { answers } }),

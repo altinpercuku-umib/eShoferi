@@ -15,6 +15,7 @@ export default function Exam() {
   const navigate = useNavigate()
   const [searchParams] = useSearchParams()
   const resumeId = searchParams.get('attempt')
+  const requestedCategory = Number(searchParams.get('category')) || null
 
   const [phase, setPhase] = useState(resumeId ? 'loading' : 'intro') // intro | loading | running | submitting
   const [exam, setExam] = useState(null)
@@ -23,6 +24,9 @@ export default function Exam() {
   const [answers, setAnswers] = useState({}) // { questionId: [answerId, ...] }
   const [confirming, setConfirming] = useState(false)
   const [error, setError] = useState('')
+  const [rules, setRules] = useState(null)
+  const [categories, setCategories] = useState([])
+  const [mode, setMode] = useState(requestedCategory ?? 'full') // 'full' or a category id
   const loadedRef = useRef(false)
   const questionHeadingRef = useRef(null)
   useTitle('Provimi')
@@ -54,11 +58,22 @@ export default function Exam() {
       })
   }, [resumeId, navigate])
 
+  // The start screen needs the exam rules and the categories to choose from.
+  useEffect(() => {
+    if (resumeId) return
+    api.examRules().then(setRules).catch(() => {})
+    api.categories().then((list) => setCategories(list.filter((c) => c.question_count > 0))).catch(() => {})
+  }, [resumeId])
+
+  useEffect(() => {
+    if (requestedCategory) setMode(requestedCategory)
+  }, [requestedCategory])
+
   async function start() {
     setPhase('loading')
     setError('')
     try {
-      begin(await api.startExam(), true)
+      begin(await api.startExam(mode === 'full' ? null : mode), true)
     } catch (err) {
       setError(err.message)
       setPhase('intro')
@@ -148,11 +163,34 @@ export default function Exam() {
   if (phase === 'submitting') return <PageLoader label="Duke dorëzuar provimin…" />
 
   if (phase === 'intro') {
+    const practiceCount = (category) => Math.min(rules?.practice_question_count ?? 10, category.question_count)
     return (
       <section className="exam-intro">
-        <h1>Provimi praktik</h1>
+        <h1>Zgjidh provimin</h1>
+
+        <fieldset className="mode-picker">
+          <legend className="visually-hidden">Lloji i provimit</legend>
+          <label className={`mode${mode === 'full' ? ' is-selected' : ''}`}>
+            <input type="radio" name="mode" checked={mode === 'full'} onChange={() => setMode('full')} />
+            <span className="mode-name">Provim i plotë</span>
+            <span className="mode-meta">
+              {rules
+                ? `${rules.question_count} pyetje nga të gjitha kategoritë, ${rules.duration_minutes} minuta. Kalon me ${rules.pass_percent}%.`
+                : 'Pyetje nga të gjitha kategoritë, me kohë si në testin e vërtetë.'}
+            </span>
+          </label>
+
+          {categories.length > 0 && <p className="mode-group">Ushtro një kategori</p>}
+          {categories.map((category) => (
+            <label key={category.id} className={`mode${mode === category.id ? ' is-selected' : ''}`}>
+              <input type="radio" name="mode" checked={mode === category.id} onChange={() => setMode(category.id)} />
+              <span className="mode-name">{category.name}</span>
+              <span className="mode-meta">{practiceCount(category)} pyetje</span>
+            </label>
+          ))}
+        </fieldset>
+
         <ul className="rules">
-          <li>Pyetjet zgjidhen rastësisht nga të gjitha kategoritë.</li>
           <li>Disa pyetje kanë më shumë se një përgjigje të saktë. Pyetja llogaritet e saktë vetëm nëse i zgjedh të gjitha.</li>
           <li>Koha fillon sapo shtyp butonin. Kur mbaron, provimi dorëzohet vetë.</li>
           <li>Me tastierë: 1–4 zgjedhin përgjigjen, shigjetat kalojnë nga një pyetje te tjetra.</li>
@@ -163,7 +201,7 @@ export default function Exam() {
           </p>
         )}
         <button type="button" className="button" onClick={start}>
-          Fillo provimin
+          {mode === 'full' ? 'Fillo provimin' : 'Fillo ushtrimin'}
         </button>
       </section>
     )
@@ -174,6 +212,7 @@ export default function Exam() {
 
   return (
     <section className="exam" aria-labelledby="question-heading">
+      {exam.category && <p className="exam-category">{exam.category.name}</p>}
       <div className="exam-bar">
         <p className="exam-count">
           Pyetja <strong>{current + 1}</strong> nga {total}

@@ -48,6 +48,10 @@ class ExamAttempt(models.Model):
 
     # If a user deletes their account, their attempts go with it.
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="exam_attempts")
+    # Empty for a full exam; set for a practice round on a single category.
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="exam_attempts"
+    )
     started_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField()
     # These stay empty (NULL) until the exam is submitted.
