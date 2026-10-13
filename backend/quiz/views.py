@@ -106,7 +106,9 @@ class ExamViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.Gen
         with transaction.atomic():
             # select_for_update locks this row until the transaction ends, so two
             # submits sent at the same moment can't both get past the checks below.
-            attempt = get_object_or_404(self.get_queryset().select_for_update(), pk=pk)
+            # of=("self",) locks only the attempt itself: PostgreSQL refuses to lock the
+            # optional category it's joined with ("nullable side of an outer join").
+            attempt = get_object_or_404(self.get_queryset().select_for_update(of=("self",)), pk=pk)
 
             # Security rule 3: submit only once, and only in time.
             if attempt.submitted_at is not None:

@@ -158,6 +158,15 @@ class ExamAPITests(APITestCase):
         allowed = set(self.small_category.questions.values_list("id", flat=True))
         self.assertTrue({q["id"] for q in response.data["questions"]} <= allowed)
 
+    def test_category_practice_can_be_submitted(self):
+        # Regression test: submitting a practice round used to crash with a 500 error.
+        self.client.force_authenticate(self.user)
+        exam = self.client.post(reverse("exam-list"), {"category": self.small_category.id}, format="json").data
+        response = self.submit(exam["id"], self.correct_answers_for(exam))
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data["score"], 4)
+        self.assertEqual(response.data["category"]["id"], self.small_category.id)
+
     def test_unknown_category_is_rejected(self):
         self.client.force_authenticate(self.user)
         response = self.client.post(reverse("exam-list"), {"category": 999999}, format="json")
