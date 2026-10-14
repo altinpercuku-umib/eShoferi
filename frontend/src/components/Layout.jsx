@@ -53,6 +53,13 @@ const TAB_ICONS = {
       <path d="M12 7.4V12l3.2 2" />
     </>
   ),
+  board: (
+    <>
+      <path d="M3.5 20.5h17" />
+      <path d="M9.2 20.5V8.5h5.6v12" />
+      <path d="M4.2 20.5v-7h5M14.8 15.5h5v5" />
+    </>
+  ),
 }
 
 // Phones: the main navigation sits at the bottom, where the thumb reaches.
@@ -61,6 +68,7 @@ function TabBar() {
     { to: '/', label: 'Kryefaqja', icon: 'home', end: true },
     { to: '/exam', label: 'Provimi', icon: 'exam' },
     { to: '/exams', label: 'Historiku', icon: 'history' },
+    { to: '/leaderboard', label: 'Renditja', icon: 'board' },
   ]
   return (
     <nav className="tabbar" aria-label="Navigimi kryesor">
@@ -114,6 +122,7 @@ export default function Layout() {
               <nav className="nav-desktop" aria-label="Navigimi kryesor">
                 <NavLink to="/exam">Provimi</NavLink>
                 <NavLink to="/exams">Historiku</NavLink>
+                <NavLink to="/leaderboard">Renditja</NavLink>
               </nav>
               <button type="button" className="link-button" onClick={handleLogout}>
                 Dil
@@ -121,6 +130,9 @@ export default function Layout() {
             </>
           ) : (
             <>
+              <NavLink to="/leaderboard" className="nav-desktop-link">
+                Renditja
+              </NavLink>
               <NavLink to="/login">Hyr</NavLink>
               <Link to="/register" className="button button-small">
                 Regjistrohu

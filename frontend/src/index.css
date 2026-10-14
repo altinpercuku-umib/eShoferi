@@ -18,6 +18,7 @@
   --blue: #38a3ff;
   --green: #3cf0a0;
   --focus: #38a3ff;
+  --warn: #ffd23f;
   --glow: 1; /* 1 = neon on, 0 = off (daylight) */
 
   --font-body: 'Barlow', system-ui, sans-serif;
@@ -50,6 +51,7 @@
   --blue: #1565d8;
   --green: #0f8a52;
   --focus: #1565d8;
+  --warn: #b98900; /* darker yellow: the bright one is too faint on white */
   --glow: 0;
   color-scheme: light;
 }
@@ -996,6 +998,436 @@ input {
   background: var(--bg);
 }
 
+/* ---------- dashboard ---------- */
+
+.dash-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 2.5rem;
+  padding-block: 1rem 2.5rem;
+}
+.dash-hero.is-solo {
+  grid-template-columns: 1fr;
+}
+.dash-greeting h1 {
+  font-size: var(--step-4);
+  font-weight: 700;
+  line-height: 1.04;
+  max-width: 13ch;
+}
+
+/* The one number the dashboard leads with: same sans as the body, proportional figures. */
+.readiness {
+  --level: var(--blue);
+  padding: 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.readiness.is-good {
+  --level: var(--green);
+}
+.readiness.is-warn {
+  --level: var(--warn);
+}
+.readiness.is-bad {
+  --level: var(--red);
+}
+.readiness-label {
+  margin: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+.readiness-value {
+  margin: 0.15rem 0 0.9rem;
+  font-family: var(--font-body);
+  font-size: clamp(3.5rem, 9vw, 4.75rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.readiness-verdict {
+  margin: 1rem 0 0.2rem;
+}
+.readiness-verdict strong::before {
+  content: '';
+  display: inline-block;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-right: 0.45rem;
+  border-radius: 50%;
+  background: var(--level);
+  box-shadow: 0 0 calc(8px * var(--glow)) var(--level);
+}
+.readiness-basis,
+.readiness-empty {
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+.readiness-empty {
+  margin-top: 0.5rem;
+  font-size: var(--step-0);
+}
+
+/* Meter: a ratio against a limit. The fill carries the level, the track stays quiet. */
+.meter {
+  position: relative;
+  display: block;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--line);
+}
+.meter.is-good {
+  --level: var(--green);
+}
+.meter.is-warn {
+  --level: var(--warn);
+}
+.meter.is-bad {
+  --level: var(--red);
+}
+.meter-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--w);
+  border-radius: inherit;
+  background: var(--level, var(--blue));
+  box-shadow: 0 0 calc(10px * var(--glow)) color-mix(in srgb, var(--level, var(--blue)) 60%, transparent);
+}
+.meter-mark {
+  position: absolute;
+  top: -0.3rem;
+  bottom: -0.3rem;
+  left: var(--mark);
+  width: 2px;
+  border-radius: 1px;
+  background: var(--ink);
+}
+
+/* Small stats: one strip divided by hairlines, like an instrument cluster. */
+.kpis {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-block: 1px solid var(--line);
+}
+.kpis li + li {
+  border-left: 1px solid var(--line);
+}
+.kpi {
+  display: grid;
+  gap: 0.15rem;
+  height: 100%;
+  padding: 1rem 1.25rem;
+  color: var(--ink);
+  text-decoration: none;
+}
+a.kpi:hover {
+  background: var(--surface);
+}
+.kpi-label {
+  color: var(--muted);
+  font-size: var(--step--1);
+  font-weight: 600;
+}
+.kpi-value {
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.15;
+}
+.kpi-detail {
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+
+.dash-section {
+  margin-bottom: 2.5rem;
+}
+.dash-empty {
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+}
+.dash-empty p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Progress chart: one column per exam, pass mark as a dashed threshold line. */
+.chart {
+  margin: 0;
+}
+.chart-key {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+.chart-key-line {
+  width: 1.5rem;
+  border-top: 1px dashed var(--muted);
+}
+.chart-plot {
+  position: relative;
+  height: 12rem;
+  margin: 1.75rem 0 0 2.75rem;
+}
+.chart-gridline,
+.chart-threshold {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: var(--y);
+}
+.chart-gridline {
+  height: 1px;
+  background: var(--line);
+}
+.chart-threshold {
+  z-index: 2;
+  border-top: 1px dashed var(--muted);
+  pointer-events: none;
+}
+.chart-tick,
+.chart-threshold span {
+  position: absolute;
+  right: calc(100% + 0.5rem);
+  transform: translateY(-50%);
+  font-size: 0.75rem;
+  line-height: 1;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.chart-tick {
+  top: 0;
+}
+.chart-threshold span {
+  top: -1px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.chart-bars {
+  position: absolute;
+  inset: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.25rem;
+}
+.chart-col {
+  position: relative;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.chart-bar {
+  position: absolute;
+  bottom: 0;
+  width: min(24px, 70%);
+  height: max(var(--h), 2px);
+  border-radius: 4px 4px 0 0;
+  background: color-mix(in srgb, var(--blue) 45%, var(--surface));
+}
+.chart-col.is-latest .chart-bar,
+.chart-col:hover .chart-bar,
+.chart-bar:focus-visible {
+  background: var(--blue);
+}
+.chart-col.is-latest .chart-bar {
+  box-shadow: 0 0 calc(14px * var(--glow)) color-mix(in srgb, var(--blue) 55%, transparent);
+}
+.chart-value {
+  position: absolute;
+  bottom: calc(var(--h) + 0.4rem);
+  font-weight: 600;
+  font-size: 0.85rem;
+  line-height: 1;
+}
+.chart-tip {
+  position: absolute;
+  bottom: calc(var(--h) + 0.6rem);
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  gap: 0.15rem;
+  padding: 0.5rem 0.7rem;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%);
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+.chart-tip strong {
+  color: var(--ink);
+  font-size: 1rem;
+}
+.chart-col:hover .chart-tip,
+.chart-col:focus-within .chart-tip {
+  opacity: 1;
+}
+.chart-col:first-child .chart-tip {
+  left: 0;
+  transform: none;
+}
+.chart-col:last-child .chart-tip {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+.chart-axis {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 0 0 2.75rem;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+.chart-table {
+  margin-top: 1rem;
+  font-size: var(--step--1);
+}
+.chart-table summary {
+  width: fit-content;
+  color: var(--blue);
+  cursor: pointer;
+}
+.chart-table table {
+  width: 100%;
+  margin-top: 0.75rem;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.chart-table th,
+.chart-table td {
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+}
+.chart-table th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.weakest {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 0.35rem 1.5rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+  background: var(--surface);
+  border: 1px solid var(--warn);
+  border-radius: var(--radius);
+  box-shadow: 0 0 calc(20px * var(--glow)) color-mix(in srgb, var(--warn) 16%, transparent);
+}
+.weakest h2 {
+  margin: 0;
+  font-size: var(--step-1);
+}
+.weakest p {
+  margin: 0;
+  color: var(--muted);
+}
+.weakest p strong {
+  color: var(--ink);
+}
+.weakest .button {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+.topic-meter {
+  max-width: 16rem;
+  height: 0.35rem;
+  margin: 0.6rem 0 0.1rem;
+}
+
+/* ---------- leaderboard ---------- */
+
+.board {
+  max-width: 44rem;
+}
+.board-intro {
+  color: var(--muted);
+}
+.board-periods {
+  margin: 0.25rem 0 1.25rem;
+}
+.board-me {
+  padding: 0.9rem 1.1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.board-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 0;
+  border-top: 1px solid var(--line);
+}
+.board-row {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  grid-template-areas:
+    'rank name average'
+    'rank exams average';
+  align-items: center;
+  column-gap: 1rem;
+  padding: 0.85rem 0.6rem;
+  border-bottom: 1px solid var(--line);
+}
+.board-rank {
+  grid-area: rank;
+  font: 700 1.25rem / 1 var(--font-display);
+  color: var(--muted);
+}
+.board-name {
+  grid-area: name;
+  font-weight: 600;
+}
+.board-you {
+  color: var(--muted);
+  font-weight: 400;
+}
+.board-exams {
+  grid-area: exams;
+  color: var(--muted);
+  font-size: var(--step--1);
+}
+.board-average {
+  grid-area: average;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.board-row.is-first .board-rank {
+  color: var(--yellow);
+  text-shadow: 0 0 calc(10px * var(--glow)) var(--yellow);
+}
+:root[data-theme='light'] .board-row.is-first .board-rank {
+  color: var(--warn);
+}
+.board-row.is-me {
+  background: color-mix(in srgb, var(--blue) 10%, transparent);
+  box-shadow: inset 3px 0 0 var(--blue);
+}
+.is-refreshing {
+  opacity: 0.5;
+  transition: opacity 0.15s ease;
+}
+
 /* ---------- history & messages ---------- */
 
 .history {
@@ -1107,9 +1539,13 @@ input {
     padding-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom));
   }
 
+  .nav-desktop-link {
+    display: none;
+  }
+
   .tabbar {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     position: fixed;
     left: 0;
     right: 0;
@@ -1293,6 +1729,45 @@ input {
   }
   .topics h2 {
     font-size: 1.5rem;
+  }
+
+  .dash-hero {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+  }
+  .dash-greeting h1 {
+    font-size: 2.1rem;
+  }
+  .kpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .kpis li + li {
+    border-left: 0;
+  }
+  .kpis li:nth-child(even) {
+    border-left: 1px solid var(--line);
+  }
+  .kpis li:nth-child(n + 3) {
+    border-top: 1px solid var(--line);
+  }
+  .kpi {
+    padding: 0.9rem 1rem;
+  }
+  .kpi-value {
+    font-size: 1.6rem;
+  }
+  .weakest {
+    grid-template-columns: 1fr;
+    padding: 1.1rem;
+  }
+  .weakest .button {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: 0.6rem;
+  }
+  .board-row {
+    grid-template-columns: 2.75rem 1fr auto;
   }
 
   .segmented {

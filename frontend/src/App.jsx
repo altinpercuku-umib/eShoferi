@@ -4,6 +4,7 @@ import Layout from './components/Layout.jsx'
 import Exam from './pages/Exam.jsx'
 import History from './pages/History.jsx'
 import Home from './pages/Home.jsx'
+import Leaderboard from './pages/Leaderboard.jsx'
 import Login from './pages/Login.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Register from './pages/Register.jsx'
@@ -19,6 +20,7 @@ export default function App() {
         <Route path="exam" element={<RequireAuth><Exam /></RequireAuth>} />
         <Route path="exams" element={<RequireAuth><History /></RequireAuth>} />
         <Route path="exams/:id" element={<RequireAuth><Result /></RequireAuth>} />
+        <Route path="leaderboard" element={<Leaderboard />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

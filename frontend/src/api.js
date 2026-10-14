@@ -93,4 +93,7 @@ export const api = {
   exams: () => request('/exams/'),
   exam: (id) => request(`/exams/${id}/`),
   submitExam: (id, answers) => request(`/exams/${id}/submit/`, { method: 'POST', body: { answers } }),
+
+  stats: () => request('/stats/'),
+  leaderboard: (period) => request(`/leaderboard/?period=${period}`),
 }
