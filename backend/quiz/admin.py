@@ -28,9 +28,9 @@ class AttemptQuestionInline(admin.TabularInline):
 
 class ExamAttemptAdmin(admin.ModelAdmin):
     inlines = [AttemptQuestionInline]
-    list_display = ('user', 'started_at', 'submitted_at', 'score', 'passed')
-    list_filter = ('passed',)
-    readonly_fields = ('user', 'started_at', 'expires_at', 'submitted_at', 'score', 'passed')
+    list_display = ('user', 'category', 'started_at', 'submitted_at', 'score', 'total', 'passed')
+    list_filter = ('passed', 'category')
+    readonly_fields = ('user', 'category', 'started_at', 'expires_at', 'submitted_at', 'score', 'total', 'passed')
 
     # Attempts are created by the API only, never by hand.
     def has_add_permission(self, request):

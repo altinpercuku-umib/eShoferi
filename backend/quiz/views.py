@@ -85,7 +85,9 @@ class ExamViewSet(mixins.ListModelMixin, mixins.RetrieveModelMixin, viewsets.Gen
 
         # Either the attempt AND all its questions are saved, or nothing is.
         with transaction.atomic():
-            attempt = ExamAttempt.objects.create(user=request.user, category=category, expires_at=expires_at)
+            attempt = ExamAttempt.objects.create(
+                user=request.user, category=category, expires_at=expires_at, total=count
+            )
             AttemptQuestion.objects.bulk_create(
                 AttemptQuestion(attempt=attempt, question_id=qid, position=i)
                 for i, qid in enumerate(chosen_ids)

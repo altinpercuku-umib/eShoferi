@@ -238,5 +238,10 @@ EXAM_DURATION_MINUTES = config("EXAM_DURATION_MINUTES", default=45, cast=int)
 EXAM_PASS_PERCENT = config("EXAM_PASS_PERCENT", default=85, cast=int)
 # Practice rounds on a single category use this many questions (or fewer, if the category is small).
 PRACTICE_QUESTION_COUNT = config("PRACTICE_QUESTION_COUNT", default=10, cast=int)
+
+# Leaderboard: only full exams count, and you need at least this many to appear,
+# so one lucky exam can't put someone at the top.
+LEADERBOARD_MIN_EXAMS = config("LEADERBOARD_MIN_EXAMS", default=2, cast=int)
+LEADERBOARD_SIZE = config("LEADERBOARD_SIZE", default=50, cast=int)
 # Extra seconds allowed after the timer ends, for slow networks.
 EXAM_SUBMIT_GRACE_SECONDS = config("EXAM_SUBMIT_GRACE_SECONDS", default=30, cast=int)

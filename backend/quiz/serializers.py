@@ -84,14 +84,10 @@ class AttemptItemResultSerializer(serializers.ModelSerializer):
 
 class ExamHistorySerializer(serializers.ModelSerializer):
     category = CategoryNameSerializer(read_only=True)
-    total = serializers.SerializerMethodField()
 
     class Meta:
         model = ExamAttempt
-        fields = ["id", "category", "started_at", "submitted_at", "score", "total", "passed"]
-
-    def get_total(self, attempt):
-        return attempt.items.count()
+        fields = ["id", "category", "started_at", "submitted_at", "score", "total", "percent", "passed"]
 
 
 class ExamResultSerializer(ExamHistorySerializer):
