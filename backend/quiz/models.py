@@ -48,8 +48,13 @@ class ExamAttempt(models.Model):
 
     # If a user deletes their account, their attempts go with it.
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="exam_attempts")
+    # Empty for a full exam; set for a practice round on a single category.
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, blank=True, related_name="exam_attempts"
+    )
     started_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField()
+    total = models.PositiveSmallIntegerField(default=0)  # number of questions in this attempt
     # These stay empty (NULL) until the exam is submitted.
     submitted_at = models.DateTimeField(null=True, blank=True)
     score = models.PositiveSmallIntegerField(null=True, blank=True)
@@ -60,6 +65,12 @@ class ExamAttempt(models.Model):
 
     def __str__(self):
         return f"{self.user} - {self.started_at:%Y-%m-%d %H:%M}"
+
+    @property
+    def percent(self):
+        if self.score is None or not self.total:
+            return None
+        return round(self.score * 100 / self.total, 1)
 
 
 class AttemptQuestion(models.Model):

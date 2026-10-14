@@ -1,0 +1,2410 @@
+[
+  {
+    "model": "quiz.category",
+    "pk": 107,
+    "fields": {
+      "name": "Ndriçimi dhe sinjalizimi i automjetit",
+      "description": "Dritat e automjetit, sinjalet e drejtimit dhe dritat e rrezikut."
+    }
+  },
+  {
+    "model": "quiz.category",
+    "pk": 108,
+    "fields": {
+      "name": "Ndalja dhe parkimi",
+      "description": "Ku lejohet dhe ku ndalohet ndalja e parkimi, dhe si parkohet në mënyrë të sigurt."
+    }
+  },
+  {
+    "model": "quiz.category",
+    "pk": 109,
+    "fields": {
+      "name": "Këmbësorët, biçiklistët dhe fëmijët",
+      "description": "Si sillemi me pjesëmarrësit më të cenueshëm në trafik."
+    }
+  },
+  {
+    "model": "quiz.category",
+    "pk": 110,
+    "fields": {
+      "name": "Automjeti dhe mirëmbajtja",
+      "description": "Gomat, frenat, llambat paralajmëruese dhe gatishmëria e automjetit."
+    }
+  },
+  {
+    "model": "quiz.category",
+    "pk": 111,
+    "fields": {
+      "name": "Vozitja në autostradë",
+      "description": "Hyrja, dalja dhe sjellja e sigurt në autostradë."
+    }
+  },
+  {
+    "model": "quiz.category",
+    "pk": 112,
+    "fields": {
+      "name": "Moti dhe kushtet e rrugës",
+      "description": "Vozitja në shi, akull, mjegull, erë dhe dritë të fortë dielli."
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1101,
+    "fields": {
+      "category": 107,
+      "question_text": "Natën po vozitni me dritat e gjata dhe nga përballë vjen një automjet. Çfarë duhet të bëni?",
+      "explanation": "Dritat e gjata verbojnë shoferin nga përballë. Kaloni në dritat e shkurtra derisa automjeti të kalojë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11001,
+    "fields": {
+      "question": 1101,
+      "answer_text": "Të kaloni në dritat e shkurtra",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11002,
+    "fields": {
+      "question": 1101,
+      "answer_text": "Të mbani dritat e gjata që ta shihni më mirë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11003,
+    "fields": {
+      "question": 1101,
+      "answer_text": "Të fikni të gjitha dritat për një moment",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1102,
+    "fields": {
+      "category": 107,
+      "question_text": "Për çfarë shërbejnë sinjalet e drejtimit?",
+      "explanation": "Sinjalet e drejtimit u tregojnë të tjerëve se do të ndryshoni drejtim ose shirit, që ata të mund të reagojnë në kohë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11004,
+    "fields": {
+      "question": 1102,
+      "answer_text": "Të paralajmërojnë të tjerët se do të ndryshoni drejtim ose shirit",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11005,
+    "fields": {
+      "question": 1102,
+      "answer_text": "T'ju japin përparësi në kryqëzim",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11006,
+    "fields": {
+      "question": 1102,
+      "answer_text": "Të tregojnë se po ngadalësoni",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1103,
+    "fields": {
+      "category": 107,
+      "question_text": "Kur duhet ta ndizni sinjalin e drejtimit?",
+      "explanation": "Sinjalizoni para se ta filloni manovrën dhe në kohë të mjaftueshme, që të tjerët ta kuptojnë qëllimin tuaj. Sinjali nuk ju jep të drejtë kalimi.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11007,
+    "fields": {
+      "question": 1103,
+      "answer_text": "Në kohë, para se ta filloni manovrën",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11008,
+    "fields": {
+      "question": 1103,
+      "answer_text": "Gjatë manovrës, kur jeni duke u kthyer",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11009,
+    "fields": {
+      "question": 1103,
+      "answer_text": "Vetëm kur ka automjete pas jush",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1104,
+    "fields": {
+      "category": 107,
+      "question_text": "Kur përdoret drita e pasme e mjegullës?",
+      "explanation": "Drita e pasme e mjegullës është shumë e fortë. Përdoret vetëm kur dukshmëria është shumë e dobët, p.sh. në mjegull të dendur, sepse përndryshe verbon shoferët pas jush.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11010,
+    "fields": {
+      "question": 1104,
+      "answer_text": "Vetëm kur dukshmëria është shumë e dobët",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11011,
+    "fields": {
+      "question": 1104,
+      "answer_text": "Në çdo shi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11012,
+    "fields": {
+      "question": 1104,
+      "answer_text": "Gjithmonë natën",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1105,
+    "fields": {
+      "category": 107,
+      "question_text": "Kur ndizen dritat e rrezikut (katër sinjalet njëkohësisht)?",
+      "explanation": "Dritat e rrezikut paralajmërojnë të tjerët se automjeti juaj është një pengesë, p.sh. kur është prishur ose ka ndaluar në një vend të rrezikshëm. Nuk janë leje për të parkuar në vend të ndaluar.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11013,
+    "fields": {
+      "question": 1105,
+      "answer_text": "Kur automjeti është prishur dhe pengon trafikun",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11014,
+    "fields": {
+      "question": 1105,
+      "answer_text": "Kur parkoni për pak minuta në vend të ndaluar",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11015,
+    "fields": {
+      "question": 1105,
+      "answer_text": "Kur vozitni në shi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1106,
+    "fields": {
+      "category": 107,
+      "question_text": "Pse duhet t'i mbani të pastra dritat dhe xhamat e automjetit?",
+      "explanation": "Dritat dhe xhamat e pista pakësojnë dukshmërinë tuaj dhe e bëjnë automjetin tuaj më pak të dukshëm për të tjerët, sidomos natën.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11016,
+    "fields": {
+      "question": 1106,
+      "answer_text": "Që të shihni mirë dhe të tjerët t'ju shohin",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11017,
+    "fields": {
+      "question": 1106,
+      "answer_text": "Vetëm për pamje më të mirë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11018,
+    "fields": {
+      "question": 1106,
+      "answer_text": "Sepse dritat e pista harxhojnë më shumë energji",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1107,
+    "fields": {
+      "category": 108,
+      "question_text": "Ku ndalohet parkimi?",
+      "explanation": "Parkimi ndalohet aty ku pengon ose rrezikon të tjerët, si në vendkalimin e këmbësorëve dhe para hyrjeve të garazheve apo oborreve.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11019,
+    "fields": {
+      "question": 1107,
+      "answer_text": "Në vendkalimin e këmbësorëve",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11020,
+    "fields": {
+      "question": 1107,
+      "answer_text": "Para hyrjes së një garazhi",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11021,
+    "fields": {
+      "question": 1107,
+      "answer_text": "Në një rrugë të gjerë pa shenja ndalimi, aty ku nuk pengoni askënd",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1108,
+    "fields": {
+      "category": 108,
+      "question_text": "Shenja rrethore me sfond të kaltër, buzë të kuqe dhe një vijë të kuqe diagonale do të thotë:",
+      "explanation": "Kjo është shenja 'Ndalohet parkimi'. Ndalja e shkurtër, p.sh. për të lëshuar një pasagjer, zakonisht lejohet.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11022,
+    "fields": {
+      "question": 1108,
+      "answer_text": "Ndalohet parkimi",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11023,
+    "fields": {
+      "question": 1108,
+      "answer_text": "Ndalohet ndalja dhe parkimi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11024,
+    "fields": {
+      "question": 1108,
+      "answer_text": "Vend parkimi me pagesë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1109,
+    "fields": {
+      "category": 108,
+      "question_text": "Shenja rrethore me sfond të kaltër, buzë të kuqe dhe dy vija të kuqe të kryqëzuara (X) do të thotë:",
+      "explanation": "Kjo është shenja 'Ndalohet ndalja dhe parkimi'. Këtu nuk lejohet as ndalja e shkurtër.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11025,
+    "fields": {
+      "question": 1109,
+      "answer_text": "Ndalohet ndalja dhe parkimi",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11026,
+    "fields": {
+      "question": 1109,
+      "answer_text": "Ndalohet vetëm parkimi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11027,
+    "fields": {
+      "question": 1109,
+      "answer_text": "Kryqëzim përpara",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1110,
+    "fields": {
+      "category": 108,
+      "question_text": "Para se të hapni derën e automjetit të parkuar anës rrugës, duhet:",
+      "explanation": "Shikoni në pasqyrë dhe kthejeni kokën që të siguroheni se nuk vjen asnjë biçiklist, motoçiklist ose automjet. Dera e hapur papritur mund të shkaktojë aksident të rëndë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11028,
+    "fields": {
+      "question": 1110,
+      "answer_text": "Të shikoni nëse po vjen ndonjë biçiklist ose automjet",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11029,
+    "fields": {
+      "question": 1110,
+      "answer_text": "Ta hapni shpejt që të mos pengoni trafikun",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11030,
+    "fields": {
+      "question": 1110,
+      "answer_text": "Të ndizni dritat e rrezikut dhe ta hapni",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1111,
+    "fields": {
+      "category": 108,
+      "question_text": "Parkoni në një rrugë me pjerrësi. Çfarë duhet të bëni?",
+      "explanation": "Në pjerrësi tërhiqni frenën e dorës dhe kthejini rrotat nga bordura, që automjeti të mos rrokulliset në rrugë nëse frenat lëshojnë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11031,
+    "fields": {
+      "question": 1111,
+      "answer_text": "Të tërhiqni frenën e dorës dhe t'i ktheni rrotat nga bordura",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11032,
+    "fields": {
+      "question": 1111,
+      "answer_text": "Ta lini automjetin në marshin neutral",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11033,
+    "fields": {
+      "question": 1111,
+      "answer_text": "Mjafton të fikni motorin",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1112,
+    "fields": {
+      "category": 108,
+      "question_text": "Pse është e rrezikshme të ndaleni në një kthesë pa dukshmëri?",
+      "explanation": "Shoferët që vijnë pas jush nuk ju shohin në kohë dhe mund të përplasen me ju. Në kthesa pa dukshmëri ndalja dhe parkimi ndalohen.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11034,
+    "fields": {
+      "question": 1112,
+      "answer_text": "Sepse automjetet pas jush nuk ju shohin në kohë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11035,
+    "fields": {
+      "question": 1112,
+      "answer_text": "Nuk është e rrezikshme nëse ndizni dritat",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11036,
+    "fields": {
+      "question": 1112,
+      "answer_text": "Sepse rruga atje është gjithmonë e ngushtë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1113,
+    "fields": {
+      "category": 109,
+      "question_text": "Një top rrotullohet papritur në rrugë para jush. Çfarë duhet të prisni?",
+      "explanation": "Pas topit shpesh vrapon një fëmijë që nuk e shikon trafikun. Ngadalësoni menjëherë dhe jini gati të ndaleni.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11037,
+    "fields": {
+      "question": 1113,
+      "answer_text": "Që një fëmijë mund të vrapojë pas tij në rrugë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11038,
+    "fields": {
+      "question": 1113,
+      "answer_text": "Asgjë, mjafton ta shmangni topin",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11039,
+    "fields": {
+      "question": 1113,
+      "answer_text": "Që shoferi pas jush do të ndalet",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1114,
+    "fields": {
+      "category": 109,
+      "question_text": "Kur parakaloni një biçiklist, duhet:",
+      "explanation": "Biçiklisti mund të lëkundet ose të shmangë një gropë. Lini hapësirë anësore të mjaftueshme dhe parakaloni vetëm kur është e sigurt.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11040,
+    "fields": {
+      "question": 1114,
+      "answer_text": "Të lini hapësirë anësore të mjaftueshme",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11041,
+    "fields": {
+      "question": 1114,
+      "answer_text": "T'i bini borisë që të largohet anash",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11042,
+    "fields": {
+      "question": 1114,
+      "answer_text": "Ta parakaloni sa më afër që të mos dilni nga shiriti",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1115,
+    "fields": {
+      "category": 109,
+      "question_text": "Një person me shkop të bardhë po kalon rrugën. Çfarë do të thotë kjo?",
+      "explanation": "Shkopi i bardhë tregon se personi ka dëmtim të shikimit dhe mund të mos ju shohë. Ndaleni dhe lëreni të kalojë me qetësi.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11043,
+    "fields": {
+      "question": 1115,
+      "answer_text": "Personi ka dëmtim të shikimit; duhet ta lini të kalojë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11044,
+    "fields": {
+      "question": 1115,
+      "answer_text": "Personi po ju sinjalizon të ndaleni për ta marrë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11045,
+    "fields": {
+      "question": 1115,
+      "answer_text": "Nuk ka kuptim të veçantë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1116,
+    "fields": {
+      "category": 109,
+      "question_text": "Ju po ktheheni djathtas dhe në të djathtën tuaj një biçiklist vazhdon drejt. Kush ka përparësi?",
+      "explanation": "Biçiklisti që vazhdon drejt ka përparësi. Para se të ktheheni djathtas, kontrolloni pasqyrën dhe këndin e vdekur.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11046,
+    "fields": {
+      "question": 1116,
+      "answer_text": "Biçiklisti",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11047,
+    "fields": {
+      "question": 1116,
+      "answer_text": "Ju, sepse keni sinjalizuar",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11048,
+    "fields": {
+      "question": 1116,
+      "answer_text": "Ai që arrin i pari te kryqëzimi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1117,
+    "fields": {
+      "category": 109,
+      "question_text": "Pranë një shkolle, në orën kur mbarojnë mësimet, duhet:",
+      "explanation": "Fëmijët mund të dalin papritur në rrugë. Ngadalësoni dhe jini gati të ndaleni në çdo moment.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11049,
+    "fields": {
+      "question": 1117,
+      "answer_text": "Të ngadalësoni dhe të jeni gati të ndaleni",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11050,
+    "fields": {
+      "question": 1117,
+      "answer_text": "Të vozitni normalisht nëse nuk ka shenja",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11051,
+    "fields": {
+      "question": 1117,
+      "answer_text": "T'i bini borisë që fëmijët t'ju vënë re",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1118,
+    "fields": {
+      "category": 110,
+      "question_text": "Gjatë vozitjes ndizet llamba e kuqe e presionit të vajit. Çfarë duhet të bëni?",
+      "explanation": "Llamba e kuqe e vajit do të thotë se motori nuk lubrifikohet mirë. Ndaleni sa më shpejt në një vend të sigurt dhe fikni motorin, përndryshe motori mund të dëmtohet rëndë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11052,
+    "fields": {
+      "question": 1118,
+      "answer_text": "Të ndaleni në vend të sigurt dhe të fikni motorin",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11053,
+    "fields": {
+      "question": 1118,
+      "answer_text": "Të vazhdoni deri në shtëpi dhe ta kontrolloni nesër",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11054,
+    "fields": {
+      "question": 1118,
+      "answer_text": "Të rrisni shpejtësinë që motori të ftohet",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1119,
+    "fields": {
+      "category": 110,
+      "question_text": "Çfarë ndodh kur gomat janë të konsumuara (profili është i ulët)?",
+      "explanation": "Gomat e konsumuara e zgjasin distancën e frenimit dhe e rrisin rrezikun e akuaplanimit në rrugë të lagur.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11055,
+    "fields": {
+      "question": 1119,
+      "answer_text": "Distanca e frenimit zgjatet",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11056,
+    "fields": {
+      "question": 1119,
+      "answer_text": "Rritet rreziku i akuaplanimit në shi",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11057,
+    "fields": {
+      "question": 1119,
+      "answer_text": "Përmirësohet kapja në rrugë të lagur",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1120,
+    "fields": {
+      "category": 110,
+      "question_text": "Kur duhet kontrolluar presioni i gomave?",
+      "explanation": "Kontrolloni presionin rregullisht dhe me gomat e ftohta, sepse gomat e nxehta pas vozitjes tregojnë presion më të lartë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11058,
+    "fields": {
+      "question": 1120,
+      "answer_text": "Rregullisht, kur gomat janë të ftohta",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11059,
+    "fields": {
+      "question": 1120,
+      "answer_text": "Vetëm kur një gomë duket qartë e shfryrë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11060,
+    "fields": {
+      "question": 1120,
+      "answer_text": "Menjëherë pas një udhëtimi të gjatë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1121,
+    "fields": {
+      "category": 110,
+      "question_text": "Pedali i frenave ndihet i butë dhe shkon më thellë se zakonisht. Çfarë bëni?",
+      "explanation": "Kjo mund të tregojë defekt në sistemin e frenave. Mos vazhdoni të vozitni derisa frenat të kontrollohen nga një mekanik.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11061,
+    "fields": {
+      "question": 1121,
+      "answer_text": "Nuk vozitni më derisa të kontrollohen frenat",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11062,
+    "fields": {
+      "question": 1121,
+      "answer_text": "Vazhdoni dhe frenoni pak më herët",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11063,
+    "fields": {
+      "question": 1121,
+      "answer_text": "Shtoni ujë në rezervuarin e frenave",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1122,
+    "fields": {
+      "category": 110,
+      "question_text": "Si duhet të rregullohet mbështetësja e kokës?",
+      "explanation": "Mbështetësja e kokës duhet të jetë afërsisht në lartësinë e kokës dhe afër saj, që në përplasje nga pas të mbrojë qafën.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11064,
+    "fields": {
+      "question": 1122,
+      "answer_text": "Afërsisht në lartësinë e kokës",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11065,
+    "fields": {
+      "question": 1122,
+      "answer_text": "Në lartësinë e shpatullave",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11066,
+    "fields": {
+      "question": 1122,
+      "answer_text": "Sa më poshtë që të mos pengojë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1123,
+    "fields": {
+      "category": 110,
+      "question_text": "Si ndikon një ngarkesë e rëndë në automjet?",
+      "explanation": "Me ngarkesë të rëndë automjeti frenon më ngadalë dhe sillet ndryshe në kthesa. Mbani distancë më të madhe dhe vozitni më me kujdes.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11067,
+    "fields": {
+      "question": 1123,
+      "answer_text": "Zgjat distancën e frenimit",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11068,
+    "fields": {
+      "question": 1123,
+      "answer_text": "Nuk ka asnjë ndikim nëse ngarkesa është në bagazh",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11069,
+    "fields": {
+      "question": 1123,
+      "answer_text": "E bën automjetin më të qëndrueshëm në kthesa",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1124,
+    "fields": {
+      "category": 110,
+      "question_text": "Para se të niseni, pse duhet t'i rregulloni ulësen dhe pasqyrat?",
+      "explanation": "Ulësja e rregulluar mirë ju jep kontroll të plotë mbi pedalet dhe timonin, ndërsa pasqyrat e rregulluara ju japin dukshmëri të mirë rreth automjetit.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11070,
+    "fields": {
+      "question": 1124,
+      "answer_text": "Për kontroll të mirë mbi automjetin dhe dukshmëri të mirë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11071,
+    "fields": {
+      "question": 1124,
+      "answer_text": "Vetëm për rehati gjatë udhëtimeve të gjata",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11072,
+    "fields": {
+      "question": 1124,
+      "answer_text": "Nuk është e nevojshme nëse e njihni automjetin",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1125,
+    "fields": {
+      "category": 111,
+      "question_text": "Si hyni në autostradë nga shiriti i përshpejtimit?",
+      "explanation": "Në shiritin e përshpejtimit rrisni shpejtësinë që të përputhet me trafikun dhe hyni duke u lënë përparësi automjeteve që janë tashmë në autostradë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11073,
+    "fields": {
+      "question": 1125,
+      "answer_text": "Rrisni shpejtësinë dhe u lini përparësi automjeteve në autostradë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11074,
+    "fields": {
+      "question": 1125,
+      "answer_text": "Ndaleni në fund të shiritit dhe prisni",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11075,
+    "fields": {
+      "question": 1125,
+      "answer_text": "Automjetet në autostradë duhet t'ju lënë vend",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1126,
+    "fields": {
+      "category": 111,
+      "question_text": "Çfarë ndalohet në autostradë?",
+      "explanation": "Në autostradë ndalohet kthimi në drejtimin e kundërt dhe vozitja mbrapsht, sepse automjetet vijnë me shpejtësi të lartë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11076,
+    "fields": {
+      "question": 1126,
+      "answer_text": "Kthimi në drejtimin e kundërt",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11077,
+    "fields": {
+      "question": 1126,
+      "answer_text": "Vozitja mbrapsht",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11078,
+    "fields": {
+      "question": 1126,
+      "answer_text": "Parakalimi nga ana e majtë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1127,
+    "fields": {
+      "category": 111,
+      "question_text": "Keni kaluar daljen që ju duhej në autostradë. Çfarë bëni?",
+      "explanation": "Vazhdoni deri te dalja e ardhshme. Kthimi mbrapsht ose ndalja në autostradë është shumë e rrezikshme dhe e ndaluar.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11079,
+    "fields": {
+      "question": 1127,
+      "answer_text": "Vazhdoni deri te dalja e ardhshme",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11080,
+    "fields": {
+      "question": 1127,
+      "answer_text": "Ndaleni në shiritin e emergjencës dhe ktheheni mbrapsht",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11081,
+    "fields": {
+      "question": 1127,
+      "answer_text": "Ktheheni në drejtimin e kundërt kur rruga është e lirë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1128,
+    "fields": {
+      "category": 111,
+      "question_text": "Kur lejohet përdorimi i shiritit të emergjencës?",
+      "explanation": "Shiriti i emergjencës është vetëm për emergjenca, si prishja e automjetit, dhe për automjetet e shërbimeve urgjente. Nuk përdoret për parakalim ose pushim.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11082,
+    "fields": {
+      "question": 1128,
+      "answer_text": "Vetëm në raste emergjence, p.sh. kur automjeti prishet",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11083,
+    "fields": {
+      "question": 1128,
+      "answer_text": "Kur ka trafik të ngadaltë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11084,
+    "fields": {
+      "question": 1128,
+      "answer_text": "Për të bërë një pushim të shkurtër",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1129,
+    "fields": {
+      "category": 111,
+      "question_text": "Pse duhet distancë më e madhe nga automjeti përpara në autostradë?",
+      "explanation": "Me shpejtësi të lartë kaloni shumë metra në sekondë dhe distanca e frenimit është shumë më e gjatë, kështu që keni nevojë për më shumë hapësirë për të reaguar.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11085,
+    "fields": {
+      "question": 1129,
+      "answer_text": "Sepse me shpejtësi të lartë distanca e frenimit është më e gjatë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11086,
+    "fields": {
+      "question": 1129,
+      "answer_text": "Sepse në autostradë frenat punojnë më dobët",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11087,
+    "fields": {
+      "question": 1129,
+      "answer_text": "Nuk duhet; autostrada është më e sigurt",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1130,
+    "fields": {
+      "category": 112,
+      "question_text": "Si frenoni në rrugë me akull?",
+      "explanation": "Në akull gomat kanë shumë pak kapje. Frenoni butë dhe gradualisht, dhe mbani një distancë shumë më të madhe se zakonisht.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11088,
+    "fields": {
+      "question": 1130,
+      "answer_text": "Butë dhe gradualisht, me distancë shumë më të madhe",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11089,
+    "fields": {
+      "question": 1130,
+      "answer_text": "Fort dhe shpejt që të ndaleni sa më parë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11090,
+    "fields": {
+      "question": 1130,
+      "answer_text": "Njësoj si në rrugë të thatë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1131,
+    "fields": {
+      "category": 112,
+      "question_text": "Çfarë duhet të bëni në mjegull të dendur?",
+      "explanation": "Në mjegull ngadalësoni dhe përdorni dritat e shkurtra. Dritat e gjata reflektohen nga mjegulla dhe e përkeqësojnë dukshmërinë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11091,
+    "fields": {
+      "question": 1131,
+      "answer_text": "Të ngadalësoni dhe të përdorni dritat e shkurtra",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11092,
+    "fields": {
+      "question": 1131,
+      "answer_text": "Të ndizni dritat e gjata që të shihni më larg",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11093,
+    "fields": {
+      "question": 1131,
+      "answer_text": "Të ndiqni nga afër dritat e automjetit përpara",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1132,
+    "fields": {
+      "category": 112,
+      "question_text": "Pse rruga është veçanërisht e rrëshqitshme kur fillon shiu pas një periudhe të thatë?",
+      "explanation": "Uji përzihet me vajin, gomën dhe pluhurin e mbledhur në rrugë dhe krijon një shtresë shumë të rrëshqitshme.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11094,
+    "fields": {
+      "question": 1132,
+      "answer_text": "Sepse uji përzihet me vajin dhe pluhurin në rrugë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11095,
+    "fields": {
+      "question": 1132,
+      "answer_text": "Sepse gomat ftohen",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11096,
+    "fields": {
+      "question": 1132,
+      "answer_text": "Nuk është më e rrëshqitshme se zakonisht",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1133,
+    "fields": {
+      "category": 112,
+      "question_text": "Dielli i ulët ju verbon gjatë vozitjes. Çfarë bëni?",
+      "explanation": "Ngadalësoni dhe përdorni mbrojtësen e diellit. Kur nuk shihni mirë, duhet të jeni gati të ndaleni.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11097,
+    "fields": {
+      "question": 1133,
+      "answer_text": "Të ngadalësoni dhe të përdorni mbrojtësen e diellit",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11098,
+    "fields": {
+      "question": 1133,
+      "answer_text": "Të vazhdoni me të njëjtën shpejtësi dhe të mbyllni pak sytë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11099,
+    "fields": {
+      "question": 1133,
+      "answer_text": "Të ndizni dritat e gjata",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1134,
+    "fields": {
+      "category": 112,
+      "question_text": "Era e fortë anësore ndikon më shumë te:",
+      "explanation": "Automjetet e larta dhe të lehta, si kamionët, autobusët dhe motoçikletat, shtyhen më shumë nga era anësore. Mbani distancë më të madhe kur i parakaloni.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11100,
+    "fields": {
+      "question": 1134,
+      "answer_text": "Kamionët, autobusët dhe motoçikletat",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11101,
+    "fields": {
+      "question": 1134,
+      "answer_text": "Automjetet e ulëta sportive",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11102,
+    "fields": {
+      "question": 1134,
+      "answer_text": "Era nuk ndikon në automjete",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1135,
+    "fields": {
+      "category": 112,
+      "question_text": "Në një kthesë hyni me shpejtësi shumë të lartë. Cili është rreziku kryesor?",
+      "explanation": "Me shpejtësi të tepërt gomat humbasin kapjen dhe automjeti mund të dalë nga rruga. Ngadalësoni para kthesës, jo brenda saj.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11103,
+    "fields": {
+      "question": 1135,
+      "answer_text": "Humbja e kontrollit dhe dalja nga rruga",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11104,
+    "fields": {
+      "question": 1135,
+      "answer_text": "Konsumi më i madh i karburantit",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11105,
+    "fields": {
+      "question": 1135,
+      "answer_text": "Nuk ka rrezik nëse rruga është e thatë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1136,
+    "fields": {
+      "category": 101,
+      "question_text": "Shenja trekëndore me buzë të kuqe dhe dy shigjeta me kahe të kundërta do të thotë:",
+      "explanation": "Kjo shenjë paralajmëron se përpara rruga ka trafik në të dy drejtimet, p.sh. pas një rruge njëkahëshe.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11106,
+    "fields": {
+      "question": 1136,
+      "answer_text": "Trafik në të dy drejtimet",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11107,
+    "fields": {
+      "question": 1136,
+      "answer_text": "Rrugë njëkahëshe",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11108,
+    "fields": {
+      "question": 1136,
+      "answer_text": "Lejohet kthimi mbrapsht",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1137,
+    "fields": {
+      "category": 101,
+      "question_text": "Shenja rrethore e kaltër me shigjetë të bardhë që tregon djathtas do të thotë:",
+      "explanation": "Shenjat rrethore të kaltra janë urdhra. Kjo shenjë ju detyron të vazhdoni djathtas.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11109,
+    "fields": {
+      "question": 1137,
+      "answer_text": "Drejtim i detyrueshëm djathtas",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11110,
+    "fields": {
+      "question": 1137,
+      "answer_text": "Rekomandohet kthimi djathtas",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11111,
+    "fields": {
+      "question": 1137,
+      "answer_text": "Ndalohet kthimi djathtas",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1138,
+    "fields": {
+      "category": 101,
+      "question_text": "Shenja katrore e kaltër me shkronjën e bardhë P do të thotë:",
+      "explanation": "Shenja P tregon një vend ku lejohet parkimi.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11112,
+    "fields": {
+      "question": 1138,
+      "answer_text": "Vend parkimi",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11113,
+    "fields": {
+      "question": 1138,
+      "answer_text": "Ndalohet parkimi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11114,
+    "fields": {
+      "question": 1138,
+      "answer_text": "Stacion policie",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1139,
+    "fields": {
+      "category": 101,
+      "question_text": "Shenja romb i verdhë me buzë të bardhë dhe me një vijë të zezë diagonale do të thotë:",
+      "explanation": "Vija diagonale mbi shenjën e rrugës me përparësi tregon fundin e rrugës me përparësi. Pas saj vlejnë rregullat e zakonshme të përparësisë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11115,
+    "fields": {
+      "question": 1139,
+      "answer_text": "Fundi i rrugës me përparësi",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11116,
+    "fields": {
+      "question": 1139,
+      "answer_text": "Rrugë me përparësi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11117,
+    "fields": {
+      "question": 1139,
+      "answer_text": "Jep përparësi",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1140,
+    "fields": {
+      "category": 101,
+      "question_text": "Shenja rrethore e bardhë me vija të zeza diagonale do të thotë:",
+      "explanation": "Kjo shenjë tregon fundin e të gjitha ndalimeve që vlenin më parë, p.sh. ndalimit të parakalimit apo kufizimit të shpejtësisë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11118,
+    "fields": {
+      "question": 1140,
+      "answer_text": "Fundi i të gjitha ndalimeve",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11119,
+    "fields": {
+      "question": 1140,
+      "answer_text": "Ndalohet hyrja",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11120,
+    "fields": {
+      "question": 1140,
+      "answer_text": "Rrugë e mbyllur",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1141,
+    "fields": {
+      "category": 101,
+      "question_text": "Shenja trekëndore me buzë të kuqe dhe figurën e një këmbësori paralajmëron për:",
+      "explanation": "Kjo shenjë rreziku ju paralajmëron se përpara ka një vendkalim këmbësorësh. Ngadalësoni dhe jini gati të ndaleni.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11121,
+    "fields": {
+      "question": 1141,
+      "answer_text": "Vendkalim këmbësorësh përpara",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11122,
+    "fields": {
+      "question": 1141,
+      "answer_text": "Rrugë vetëm për këmbësorë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11123,
+    "fields": {
+      "question": 1141,
+      "answer_text": "Ndalohet kalimi i këmbësorëve",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1142,
+    "fields": {
+      "category": 102,
+      "question_text": "Në një kryqëzim pa shenja, ju ktheheni majtas dhe automjeti nga përballë vazhdon drejt. Kush kalon i pari?",
+      "explanation": "Kur ktheheni majtas, duhet t'i lini përparësi automjetit nga përballë që vazhdon drejt.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11124,
+    "fields": {
+      "question": 1142,
+      "answer_text": "Automjeti nga përballë që vazhdon drejt",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11125,
+    "fields": {
+      "question": 1142,
+      "answer_text": "Ju, sepse keni sinjalizuar më herët",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11126,
+    "fields": {
+      "question": 1142,
+      "answer_text": "Ai që ka automjetin më të madh",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1143,
+    "fields": {
+      "category": 103,
+      "question_text": "Çfarë do të thotë drita e kuqe e semaforit?",
+      "explanation": "Drita e kuqe do të thotë ndalo. Ndaleni para vijës së ndalimit dhe prisni dritën e gjelbër.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11127,
+    "fields": {
+      "question": 1143,
+      "answer_text": "Ndaleni para vijës së ndalimit",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11128,
+    "fields": {
+      "question": 1143,
+      "answer_text": "Kaloni me kujdes nëse nuk vjen askush",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11129,
+    "fields": {
+      "question": 1143,
+      "answer_text": "Ngadalësoni dhe kaloni",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1144,
+    "fields": {
+      "category": 103,
+      "question_text": "Polici që rregullon trafikun qëndron me krahët e shtrirë anash dhe ju shihni gjoksin e tij. Çfarë bëni?",
+      "explanation": "Kur polici ka krahët e shtrirë anash, automjetet që e shohin përpara ose nga mbrapa duhet të ndalen. Ata që vijnë nga anët e krahëve mund të kalojnë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11130,
+    "fields": {
+      "question": 1144,
+      "answer_text": "Ndaleni",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11131,
+    "fields": {
+      "question": 1144,
+      "answer_text": "Kaloni drejt",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11132,
+    "fields": {
+      "question": 1144,
+      "answer_text": "Ktheheni djathtas pa u ndalur",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1145,
+    "fields": {
+      "category": 103,
+      "question_text": "Polici që rregullon trafikun e ngre dorën lart. Çfarë do të thotë?",
+      "explanation": "Dora e ngritur lart është si drita e verdhë: të gjithë duhet të ndalen, përveç atyre që janë aq afër sa nuk mund të ndalen më në mënyrë të sigurt.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11133,
+    "fields": {
+      "question": 1145,
+      "answer_text": "Të gjithë duhet të ndalen, përveç atyre që nuk mund të ndalen më në mënyrë të sigurt",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11134,
+    "fields": {
+      "question": 1145,
+      "answer_text": "Të gjithë mund të kalojnë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11135,
+    "fields": {
+      "question": 1145,
+      "answer_text": "Vetëm këmbësorët duhet të ndalen",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1146,
+    "fields": {
+      "category": 104,
+      "question_text": "Para se të filloni parakalimin, duhet të siguroheni që:",
+      "explanation": "Para parakalimit sigurohuni që rruga përpara është e lirë në distancë të mjaftueshme dhe se askush pas jush nuk ka filluar t'ju parakalojë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11136,
+    "fields": {
+      "question": 1146,
+      "answer_text": "Rruga përpara është e lirë në distancë të mjaftueshme",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11137,
+    "fields": {
+      "question": 1146,
+      "answer_text": "Askush pas jush nuk ka filluar t'ju parakalojë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11138,
+    "fields": {
+      "question": 1146,
+      "answer_text": "Automjeti përpara po ecën shpejt",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1147,
+    "fields": {
+      "category": 104,
+      "question_text": "Pas parakalimit, kur ktheheni në shiritin tuaj?",
+      "explanation": "Ktheheni vetëm kur automjeti që parakaluat ka mbetur në distancë të sigurt, p.sh. kur e shihni të tërin në pasqyrën e brendshme. Mos u futni menjëherë para tij.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11139,
+    "fields": {
+      "question": 1147,
+      "answer_text": "Kur automjeti i parakaluar ka mbetur në distancë të sigurt",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11140,
+    "fields": {
+      "question": 1147,
+      "answer_text": "Menjëherë sapo ta keni kaluar",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11141,
+    "fields": {
+      "question": 1147,
+      "answer_text": "Kur të përfundojë vija e ndërprerë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1148,
+    "fields": {
+      "category": 104,
+      "question_text": "Në një rrugë me dy shirita në të njëjtin drejtim, në cilin shirit vozitni zakonisht?",
+      "explanation": "Zakonisht vozitni në shiritin e djathtë. Shiriti i majtë përdoret kryesisht për parakalim.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11142,
+    "fields": {
+      "question": 1148,
+      "answer_text": "Në shiritin e djathtë",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11143,
+    "fields": {
+      "question": 1148,
+      "answer_text": "Në shiritin e majtë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11144,
+    "fields": {
+      "question": 1148,
+      "answer_text": "Në atë ku ka më pak automjete",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1149,
+    "fields": {
+      "category": 104,
+      "question_text": "Çfarë do të thotë vija e plotë e bardhë në mes të rrugës?",
+      "explanation": "Vija e plotë nuk lejohet të kalohet ose të shkelet. Kjo do të thotë që aty nuk lejohet as parakalimi që kërkon kalimin e saj.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11145,
+    "fields": {
+      "question": 1149,
+      "answer_text": "Nuk lejohet ta kaloni apo ta shkelni",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11146,
+    "fields": {
+      "question": 1149,
+      "answer_text": "Mund ta kaloni kur parakaloni",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11147,
+    "fields": {
+      "question": 1149,
+      "answer_text": "Tregon vetëm mesin e rrugës, pa rregull të veçantë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1150,
+    "fields": {
+      "category": 104,
+      "question_text": "Çfarë do të thotë vija e ndërprerë e bardhë në mes të rrugës?",
+      "explanation": "Vija e ndërprerë lejohet të kalohet, p.sh. për parakalim, kur kjo është e sigurt dhe nuk ndalohet nga shenjat.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11148,
+    "fields": {
+      "question": 1150,
+      "answer_text": "Mund të kalohet kur është e sigurt",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11149,
+    "fields": {
+      "question": 1150,
+      "answer_text": "Nuk lejohet të kalohet kurrë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11150,
+    "fields": {
+      "question": 1150,
+      "answer_text": "Shënon fillimin e autostradës",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1151,
+    "fields": {
+      "category": 105,
+      "question_text": "Çfarë ndikon te koha e reagimit të shoferit?",
+      "explanation": "Lodhja, alkooli, disa ilaçe dhe shpërqendrimi e zgjasin kohën e reagimit. Ngjyra e automjetit nuk ka asnjë ndikim.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11151,
+    "fields": {
+      "question": 1151,
+      "answer_text": "Lodhja",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11152,
+    "fields": {
+      "question": 1151,
+      "answer_text": "Disa ilaçe",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11153,
+    "fields": {
+      "question": 1151,
+      "answer_text": "Ngjyra e automjetit",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1152,
+    "fields": {
+      "category": 105,
+      "question_text": "Si duhet të udhëtojnë fëmijët e vegjël në automjet?",
+      "explanation": "Fëmijët e vegjël duhet të udhëtojnë në ulëse të posaçme për fëmijë, të përshtatur me moshën, gjatësinë dhe peshën e tyre.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11154,
+    "fields": {
+      "question": 1152,
+      "answer_text": "Në ulëse të posaçme për fëmijë, të përshtatur me moshën dhe peshën",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11155,
+    "fields": {
+      "question": 1152,
+      "answer_text": "Në prehrin e një të rrituri",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11156,
+    "fields": {
+      "question": 1152,
+      "answer_text": "Me rripin e zakonshëm të sigurisë, pa ulëse",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1153,
+    "fields": {
+      "category": 105,
+      "question_text": "Ulësja e fëmijës e kthyer nga mbrapa mund të vendoset në ulësen e përparme vetëm nëse:",
+      "explanation": "Jastëku i ajrit (airbag) i pasagjerit të përparmë mund ta lëndojë rëndë fëmijën. Prandaj ai duhet të jetë i çaktivizuar.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11157,
+    "fields": {
+      "question": 1153,
+      "answer_text": "Jastëku i ajrit (airbag) i pasagjerit është i çaktivizuar",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11158,
+    "fields": {
+      "question": 1153,
+      "answer_text": "Fëmija është në gjumë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11159,
+    "fields": {
+      "question": 1153,
+      "answer_text": "Udhëtimi është i shkurtër",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1154,
+    "fields": {
+      "category": 105,
+      "question_text": "Çfarë do të thotë të vozitni me 'shpejtësi të përshtatur'?",
+      "explanation": "Shpejtësia e përshtatur ju lejon të ndaleni brenda distancës që shihni të lirë përpara jush, duke marrë parasysh rrugën, motin dhe trafikun.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11160,
+    "fields": {
+      "question": 1154,
+      "answer_text": "Me shpejtësi që ju lejon të ndaleni brenda distancës që shihni",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11161,
+    "fields": {
+      "question": 1154,
+      "answer_text": "Gjithmonë me shpejtësinë maksimale të lejuar",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11162,
+    "fields": {
+      "question": 1154,
+      "answer_text": "Me të njëjtën shpejtësi si automjetet e tjera",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1155,
+    "fields": {
+      "category": 106,
+      "question_text": "Gjatë vozitjes ju plas një gomë. Çfarë bëni?",
+      "explanation": "Mbajeni timonin fort, mos frenoni fort, lëshoni gazin dhe ngadalësoni gradualisht derisa të ndaleni në një vend të sigurt.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11163,
+    "fields": {
+      "question": 1155,
+      "answer_text": "Mbani timonin fort dhe ngadalësoni gradualisht",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11164,
+    "fields": {
+      "question": 1155,
+      "answer_text": "Frenoni fort menjëherë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11165,
+    "fields": {
+      "question": 1155,
+      "answer_text": "Ktheni timonin fort nga ana e kundërt",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1156,
+    "fields": {
+      "category": 106,
+      "question_text": "Gjatë vozitjes frenat nuk funksionojnë. Çfarë mund të bëni?",
+      "explanation": "Ulni marshin hap pas hapi që motori të ngadalësojë automjetin dhe përdorni frenën e dorës gradualisht. Paralajmëroni të tjerët me dritat dhe borinë.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11166,
+    "fields": {
+      "question": 1156,
+      "answer_text": "Ulni marshin gradualisht dhe përdorni me kujdes frenën e dorës",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11167,
+    "fields": {
+      "question": 1156,
+      "answer_text": "Fikni menjëherë motorin dhe hiqni çelësin",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11168,
+    "fields": {
+      "question": 1156,
+      "answer_text": "Rrisni shpejtësinë që të arrini te një tatëpjetë",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1157,
+    "fields": {
+      "category": 106,
+      "question_text": "Automjeti juaj merr flakë. Çfarë bëni?",
+      "explanation": "Ndaleni menjëherë në vend të sigurt, fikni motorin, nxirrni të gjithë nga automjeti, largohuni në distancë të sigurt dhe thirrni zjarrfikësit.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11169,
+    "fields": {
+      "question": 1157,
+      "answer_text": "Ndaleni, fikni motorin, nxirrni të gjithë dhe largohuni",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11170,
+    "fields": {
+      "question": 1157,
+      "answer_text": "Vazhdoni deri te pika më e afërt e karburantit",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11171,
+    "fields": {
+      "question": 1157,
+      "answer_text": "Hapni kapakun e motorit për të parë nga vjen zjarri",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1158,
+    "fields": {
+      "category": 106,
+      "question_text": "Një motoçiklist i lënduar ka ende helmetën. Çfarë bëni?",
+      "explanation": "Mos ia hiqni helmetën, përveç nëse është absolutisht e nevojshme, p.sh. kur nuk merr frymë. Heqja e saj mund të dëmtojë qafën.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11172,
+    "fields": {
+      "question": 1158,
+      "answer_text": "Nuk ia hiqni helmetën, përveç nëse është absolutisht e nevojshme",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11173,
+    "fields": {
+      "question": 1158,
+      "answer_text": "Ia hiqni menjëherë që të marrë frymë më lirshëm",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11174,
+    "fields": {
+      "question": 1158,
+      "answer_text": "E ngrini ulur që të jetë më rehat",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.question",
+    "pk": 1159,
+    "fields": {
+      "category": 106,
+      "question_text": "Keni një aksident të vogël pa të lënduar. Çfarë duhet të bëni?",
+      "explanation": "Ndaleni, siguroni vendin e ngjarjes dhe shkëmbeni të dhënat me shoferin tjetër. Largimi nga vendi i aksidentit nuk lejohet.",
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11175,
+    "fields": {
+      "question": 1159,
+      "answer_text": "Të ndaleni dhe të shkëmbeni të dhënat me shoferin tjetër",
+      "is_correct": true,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11176,
+    "fields": {
+      "question": 1159,
+      "answer_text": "Të largoheni nëse dëmi duket i vogël",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  },
+  {
+    "model": "quiz.answer",
+    "pk": 11177,
+    "fields": {
+      "question": 1159,
+      "answer_text": "Të vazhdoni dhe ta raportoni nesër",
+      "is_correct": false,
+      "created_at": "2026-10-13T12:00:00Z"
+    }
+  }
+]

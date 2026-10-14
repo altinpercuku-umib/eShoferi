@@ -4,9 +4,22 @@ from .models import Answer, AttemptQuestion, Category, ExamAttempt, Question
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    question_count = serializers.IntegerField(read_only=True)  # comes from .annotate() in the view
+
     class Meta:
         model = Category
-        fields = ["id", "name", "description"]
+        fields = ["id", "name", "description", "question_count"]
+
+
+class CategoryNameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ["id", "name"]
+
+
+class StartExamSerializer(serializers.Serializer):
+    # Leave empty for a full exam, or pass a category id for a practice round.
+    category = serializers.PrimaryKeyRelatedField(queryset=Category.objects.all(), required=False, allow_null=True)
 
 
 # ---------- Used DURING an exam: must never reveal correct answers ----------
@@ -26,11 +39,12 @@ class QuestionPublicSerializer(serializers.ModelSerializer):
 
 
 class ExamStartedSerializer(serializers.ModelSerializer):
+    category = CategoryNameSerializer(read_only=True)
     questions = serializers.SerializerMethodField()
 
     class Meta:
         model = ExamAttempt
-        fields = ["id", "started_at", "expires_at", "questions"]
+        fields = ["id", "category", "started_at", "expires_at", "questions"]
 
     def get_questions(self, attempt):
         questions = [item.question for item in attempt.items.all()]
@@ -69,14 +83,11 @@ class AttemptItemResultSerializer(serializers.ModelSerializer):
 
 
 class ExamHistorySerializer(serializers.ModelSerializer):
-    total = serializers.SerializerMethodField()
+    category = CategoryNameSerializer(read_only=True)
 
     class Meta:
         model = ExamAttempt
-        fields = ["id", "started_at", "submitted_at", "score", "total", "passed"]
-
-    def get_total(self, attempt):
-        return attempt.items.count()
+        fields = ["id", "category", "started_at", "submitted_at", "score", "total", "percent", "passed"]
 
 
 class ExamResultSerializer(ExamHistorySerializer):
